@@ -1,0 +1,1918 @@
+﻿@page
+@model Index
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<html>
+  <head>
+    <title>DevExtreme Demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.js" integrity="sha512-3FKAKNDHbfUwAgW45wNAvfgJDDdNoTi5PZWU7ak3Xm0X8u0LbDBWZEyPklRebTZ8r+p0M2KIJWDYZQjDPyYQEA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/jspdf@2.5.0/dist/jspdf.es.min.js"></script>
+    <script src="https://unpkg.com/jspdf-autotable@3.5.25/dist/jspdf.plugin.autotable.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="  crossorigin="anonymous"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme/20.2.11/js/dx.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme-aspnet-data/2.8.6/dx.aspnet.data.min.js"></script>    
+    <script src="https://cdn3.devexpress.com/jslib/20.2.11/js/dx.aspnet.mvc.js"></script>
+    
+
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/devextreme/20.2.11/css/dx.light.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/devextreme/20.2.11/css/dx.common.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/devexpress-diagram/2.0.45/dx-diagram.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/devexpress-diagram/2.0.45/dx-diagram.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/devexpress-gantt/2.0.40/dx-gantt.min.css" rel="stylesheet">      
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/devextreme/20.2.11/css/dx.common.css" rel="stylesheet">
+    
+</head>
+  <body>
+      <div id="salesPanel" class="salesPanel">          
+          <div id='closeSaleButton' class='dx-icon-remove icon' ></div>
+          <div class="salesInfoPanel">
+              <div class="salesInfoPanel-ProductDetail">                  
+                   <div class="dx-field-sale-label">Product Id</div> 
+                   <div id="saleProductId"></div>  
+                   <div id="createRequestButton"></div>  
+              </div>
+              <div class="salesInfoPanel-ProductDetail"> 
+                   <div class="dx-field-sale-label">Product Name</div> 
+                   <div id="saleProductName"></div>   
+              </div>              
+            @*  <div class="salesInfoPanel-ProductDetail-Trade"> 
+                   <div class="dx-field-sale-label">Trade In</div>
+                    <div id="sale-switch-on"></div> 
+                   <div class="dx-field-sale-label">Is Repair</div>
+                    <div id="saleRepair-switch-on"></div> 
+              </div>
+              <div class="salesInfoPanel-ProductDetail">
+                   <div class="dx-field-sale-label">Quantity</div> 
+                   <div id="saleQuantity"></div>  
+              </div>
+              <div class="salesInfoPanel-ProductDetail">
+                   <div class="dx-field-sale-label">Discount(%)</div>
+                   <div id="saleDiscount"></div> 
+              </div>
+              <div class="salesInfoPanel-ProductDetail">
+                   <div class="dx-field-sale-label">Price</div>
+                   <div id="sellPrice"></div> 
+              </div>*@
+               <div class="dx-field-sale-value">
+                   <div id="icon-done"></div>
+                </div>
+          </div>
+          <div class="dx-sales-grid">
+              <div id="salesGrid"></div>
+          </div>
+          <div>
+              <div class="searchInvoice">                  
+                      <div id="invoiceSearch"></div>
+              </div>
+              <div class="paymentMethod">
+                  <div class="dx-field-value">
+                      <div class="dx-field-label">Cash</div>
+                      <div id="cashCheckBox"></div>
+                  </div>
+                  <div class="dx-field-value">
+                      <div class="dx-field-label">Credit Card</div>
+                      <div id="creditCardCheckBox"></div>
+                  </div>
+                  <div class="dx-field-value">
+                      <div class="dx-field-label">Gift Card</div>
+                      <div id="giftCardCheckBox"></div>
+                      <div id="giftCardCode"></div>
+                  </div>
+              </div>              
+              <div class="endTransactionClass">
+                  <div class="dx-field-sale-value">
+                       <div id="icon-money" style="height: 100px;"></div>
+                  </div>
+              </div>
+          </div>
+              
+      </div>
+      <div id="tradeInPanel" class="tradeInPanel">          
+           <div id='closeTradeInButton' class='dx-icon-remove icon' ></div>
+           <div class="dx-field-value">
+              <div id="productId"></div>              
+           </div>
+           <div class="dx-field-value">
+              <div id="productName"></div>              
+           </div>   
+           <div class="dx-field-label">               
+              <div class="dx-field-label">In Repair</div>
+              <div id="switch-on"></div>            
+           </div>
+           <div class="dx-field-label">               
+              <div class="dx-field-label">Discount(%)</div>
+              <div id="discount"></div>              
+           </div>  
+           <div class="dx-field-label">
+              <div class="dx-field-label">Price</div>
+              <div id="buyPrice"></div>              
+           </div> 
+           <div class="dx-field-value">
+               <div id="success-contained"></div>             
+           </div>
+      </div>
+      <div id="sidePanel" class="sidePanel"> 
+          <div id='closeUploadButton' class='dx-icon-remove icon' ></div>
+           <div id="dropzone-external" class="flex-box dx-theme-border-color">
+          <img id="dropzone-image" src="#" hidden alt="" />
+          <div id="dropzone-text" class="flex-box">
+            <span>Drag & Drop the desired file</span>
+            <span>…or click to browse for a file instead.</span>
+          </div>
+          <div id="upload-progress"></div>
+        </div>
+        <div id="file-uploader"></div>
+       </div>
+       
+       <div class="dx-viewport demo-container">
+          <div id="widget"></div>
+          <div id="action-add"></div>
+          <div id="action-remove"></div>
+          <div id="action-edit"></div> 
+          <div id="open-chat-panel"></div>
+       </div>
+
+             <div id="validationPanel" class="validationPanel">                  
+              <div class="dx-field-label-add">Cashier</div>
+              <div id="cashierId" style="width: 80%;"></div>  
+               <div id="add-validation-contained"></div>      
+             </div>
+
+              <div id="validationInvoicePanel" class="validationInvoicePanel">   
+                 <div id='closeValidationInvoiceButton' class='dx-icon-remove icon' ></div>             
+              <div class="dx-field-label-add">Customer Phone</div>
+              <div id="customerPhoneNumber" style="width: 80%;"></div>              
+              <div class="dx-field-label-add">Cashier</div>
+              <div id="cashierInvoiceId" style="width: 80%;"></div>    
+               <div id="icon-send"></div>      
+             </div>
+
+             <div class="dx-field">
+                <div class="dx-report-value">
+                  <div id="icon-back"></div>
+                </div>
+             </div>
+
+             <div class="chatPanel">                 
+                 <div id='closeChatButton' class='dx-icon-remove icon' ></div>
+                 <div id="messageArea"></div>
+                 <div id="sendMessage"></div>
+             </div>
+
+             
+             <div class="weeklyReportPanel">                 
+                 <div id='closeWeeklyReportButton' class='dx-icon-remove icon' ></div>
+                 <div id="weeklyReportGrid" style="height: 700px;"></div>
+             </div>
+
+             <div class="barcodePanel">                 
+                 <div id='closeBarcodeButton' class='dx-icon-remove icon' ></div>
+                 <div id="barcodeGrid" style="height: 700px;"></div>
+             </div>
+
+             <div class="cashBoxPanel">                 
+                 <div id='closeCashBoxButton' class='dx-icon-remove icon' ></div>        
+                 <div class="dx-field-label-add">Cash Box</div>                
+                 <div id="cashBox"></div>          
+                 <div class="dx-field-label-add">Envelope</div>
+                 <div id="envelope"></div>          
+                 <div class="dx-field-label-add">Daily Earnings</div>
+                 <div id="dailyEarnings"></div>   
+                 <div id="success-outlined"></div>           
+             </div>
+
+             
+             <div class="cashCheckPanel">                 
+                 <div id='closeCashCheckButton' class='dx-icon-remove icon' ></div>             
+                 <div class="dx-field-label-add">Price</div>
+                 <div id="totalSellPrice"></div>             
+                 <div class="dx-field-label-add">Customer</div>
+                 <div id="customerCash"></div>             
+                 <div class="dx-field-label-add">Change</div>
+                 <div id="customerChange"></div>
+             </div>
+
+             
+             <div class="creditCardCheckPanel">                 
+                 <div id='closeCreditCardCheckButton' class='dx-icon-remove icon' ></div>   
+                 <div id="totalSellPriceCard"></div>                       
+                 <div class="dx-field-label-add">Please read the credit card first</div>
+                 <div id="large-indicator"></div>
+             </div>
+          
+             
+	
+	        <div class="demo-index-invoice-detail">
+              <div id="IndexInvoiceDetail"></div>
+            </div>
+
+            <div class="productRequestPanel">     
+                 <div id='closeProductRequestButton' class='dx-icon-remove icon' ></div>            
+                <div id="productRequestGrid"></div>
+            </div>
+
+            <div class="productQualitySelectionPanel">                      
+                 <div class="dx-field-label-quality">Select Product Quality</div>
+                <div class="qualitySelection" id="goodQualityButton"></div>            
+                <div class="qualitySelection" id="normalQualityButton"></div>            
+                <div class="qualitySelection" id="badQualityButton"></div>
+            </div>
+
+             
+
+        
+
+          
+
+
+
+
+
+
+    <script>
+
+var paymentMethodValue;
+var invPerId = '';       
+var personnelStoreId    ;      
+var personnelStoreName  ;    
+var personnelPermission ;
+var customerPhoneValue  ;
+var dailyEarningsDataSource;
+var oldSellPrice;
+var sellPriceValue = 0;
+var cashierIdValue;
+var storeDataResponse;
+var productIdValue;
+var sellPriceTotalValue;
+var qualityProductId;
+var qualityRate;
+var productNameValue;
+window.jsPDF = window.jspdf.jsPDF;
+var localUrl = "Index";
+
+
+
+
+    
+
+//Load
+$(document).ready(function(){
+   jQuery('.validationPanel').addClass('active');
+});
+
+//Button
+//This button allows the upload panel to be closed.
+document.getElementById("closeUploadButton").onclick = function() {
+     jQuery('.sidePanel').removeClass('upload');
+    };
+//This button closes the tab where the purchased products are processed.
+document.getElementById("closeTradeInButton").onclick = function() {
+     jQuery('.tradeInPanel').removeClass('active');
+    };
+
+document.getElementById("closeSaleButton").onclick = function() {
+     jQuery('.salesPanel').removeClass('active');
+     jQuery('.validationInvoicePanel').removeClass('active');
+    };
+
+document.getElementById("closeValidationInvoiceButton").onclick = function() {
+     jQuery('.validationInvoicePanel').removeClass('active');
+    };
+
+document.getElementById("closeChatButton").onclick = function() {
+ jQuery('.chatPanel').removeClass('active');
+};
+document.getElementById("closeWeeklyReportButton").onclick = function() {
+ jQuery('.weeklyReportPanel').removeClass('active');
+};
+document.getElementById("closeBarcodeButton").onclick = function() {
+ jQuery('.barcodePanel').removeClass('active');
+};
+document.getElementById("closeCashCheckButton").onclick = function() {
+ jQuery('.cashCheckPanel').removeClass('active');
+};
+document.getElementById("closeCreditCardCheckButton").onclick = function() {
+ jQuery('.creditCardCheckPanel').removeClass('active');
+};
+document.getElementById("closeCashBoxButton").onclick = function() {
+ jQuery('.cashBoxPanel').removeClass('active');
+};
+document.getElementById("closeProductRequestButton").onclick = function() {
+ jQuery('.productRequestPanel').removeClass('active');
+};
+
+
+
+var buyButton =  $('#success-contained').dxButton({
+    stylingMode: 'contained',
+    text: 'Done',
+    type: 'success',
+    width: 120,
+    onClick() {
+        var productIdValue = productId.dxTextBox("instance")._options._optionManager._options.text
+        var productNameValue = productName.dxTextBox("instance")._options._optionManager._options.text
+        var discountValue = discount.dxNumberBox("instance")._options._optionManager._options.value 
+        var buyPriceValue = buyPrice.dxNumberBox("instance")._options._optionManager._options.value 
+        var isRepairValue = isRepair.dxSwitch("instance")._options._optionManager._options.value 
+       $.ajax({
+              type: "POST",
+              url: `${localUrl}/ProductTradeIn?itemId=${productIdValue}&itemName=${productNameValue}&tradeIn=${isRepairValue}&discount=${discountValue}&buyPrice=${buyPriceValue}&storeId=${personnelStoreId}`,
+              success: function(resultData) {DevExpress.ui.notify('Trade in successful');}
+       });                            
+        dataGrid.dxDataGrid("instance").refresh();
+        
+       
+      
+    },
+  });
+
+var saleButton =  $('#icon-done').dxButton({
+    hint: 'Create Invoice',
+    icon: 'check',
+    type: 'success',
+    text: 'Done',
+    onClick() {
+        $.ajax({
+            type: "POST",
+            url: `${localUrl}/AddSale?itemId=${productIdValue}&itemName=${productNameValue}&sellPrice=${sellPriceValue}&storeId=${personnelStoreId}`,
+            success: function(resultData) {                 
+                DevExpress.ui.notify(`${productNameValue} has been added to the list`);
+                salesGrid.dxDataGrid("instance").refresh();
+            }
+        });
+        saleProductId.dxNumberBox("instance")._options._optionManager._options.value = 0;
+        saleProductId.dxNumberBox("instance")._options._optionManager._options.text = '';
+        saleProductId.dxNumberBox("instance").repaint();
+        saleProductName.dxSelectBox("instance")._options._optionManager._options.value = 0;
+        saleProductName.dxSelectBox("instance")._options._optionManager._options.text = '';
+        saleProductName.dxSelectBox("instance").repaint();
+    },
+  });
+
+    $('#success-outlined').dxButton({
+    stylingMode: 'outlined',
+    text: 'Done',
+    type: 'success',
+    width: 120,
+    onClick() {      
+        var envelopeValue = envelope.dxNumberBox("instance")._options._optionManager._options.value;
+        var cashBoxValue = cashBox.dxNumberBox("instance")._options._optionManager._options.value;   
+      $.ajax
+      ({
+          type: "POST",
+          url: `${localUrl}/UpdateCashBox?storeId=${personnelStoreId}&personnelcode=${cashierIdValue}&cashBox=${cashBoxValue}&envelope=${envelopeValue}`,
+          success: function(resultData) {
+              DevExpress.ui.notify('Process Completed');
+              envelope.dxNumberBox("instance")._options._optionManager._options.value = 0;
+              cashBox.dxNumberBox("instance")._options._optionManager._options.value = 0;
+              envelope.dxNumberBox("instance").repaint();
+              cashBox.dxNumberBox("instance").repaint();
+          }
+      });
+    },
+  });
+
+
+var endTransactionButton = $('#icon-money').dxButton({
+    icon: 'money',
+    type: 'success',
+    text: 'End Transaction',
+       onClick(event) {  
+                paymentMethodValue = cash.dxCheckBox("instance")._options._optionManager._options.value == true ? 1 : creditCard.dxCheckBox("instance")._options._optionManager._options.value == true ? 2 :
+                        giftCard.dxCheckBox("instance")._options._optionManager._options.value == true ? 3 :  0;      
+           if (paymentMethodValue > 0) {
+               jQuery('.validationInvoicePanel').addClass('active');
+           }
+           else { 
+               DevExpress.ui.notify("Please choose the payment method", 'error', 2000);
+           }
+       
+                  
+    },
+  }); 
+
+var invoiceValidation =   $('#icon-send').dxButton({
+    icon: 'check',
+    type: 'success',
+    text: 'Create Invoice',
+    onClick() {
+      customerPhoneValue = customerPhoneNumber.dxTextBox("instance")._options._optionManager._options.value;
+      authPayloadValue = cashierInvoiceId.dxTextBox("instance")._options._optionManager._options.text;
+      giftCodeValue = giftCardCode.dxTextBox("instance")._options._optionManager._options.text;
+        $.ajax({
+            type: "POST",
+            url: `${localUrl}/Invoice?authPayload=${authPayloadValue}&paymentMethod=${paymentMethodValue}&storeId=${personnelStoreId}&customerPhone=${customerPhoneValue}&giftCode=${giftCodeValue}`,
+            success: function(resultData) {
+                if(resultData[0] > 0)
+                {                    
+                      switch(paymentMethodValue) {
+                          case 1:
+                              totalSellPrice.dxNumberBox('instance')._options._optionManager._options.value = resultData[0];
+                              totalSellPrice.dxNumberBox('instance').repaint();
+                              jQuery('.cashCheckPanel').addClass('active');
+                              invoiceSearch.dxTextBox('instance')._options._optionManager._options.value = resultData[1];
+                              invoiceSearch.dxTextBox('instance')._options._optionManager._options.text = resultData[1];
+                              invoiceSearch.dxTextBox('instance').repaint();
+                              break;
+                          case 2:
+                              totalSellPriceCard.dxNumberBox('instance')._options._optionManager._options.value = resultData[0];
+                              totalSellPriceCard.dxNumberBox('instance').repaint();
+                              jQuery('.creditCardCheckPanel').addClass('active');
+                              invoiceSearch.dxTextBox('instance')._options._optionManager._options.value = resultData[1];
+                              invoiceSearch.dxTextBox('instance')._options._optionManager._options.text = resultData[1];
+                              invoiceSearch.dxTextBox('instance').repaint();
+                              break;
+                          default:
+                      }
+                    jQuery('.validationInvoicePanel').removeClass('active');
+                    DevExpress.ui.notify('invoice created');
+                    salesGrid.dxDataGrid("instance").refresh();
+                    dataGrid.dxDataGrid("instance").refresh(); 
+                    cash.dxCheckBox("instance")._options._optionManager._options.value = false;
+                    cash.dxCheckBox("instance").repaint();
+                    creditCard.dxCheckBox("instance")._options._optionManager._options.value = false;
+                    creditCard.dxCheckBox("instance").repaint();
+                    giftCard.dxCheckBox("instance")._options._optionManager._options.value = false;
+                    giftCard.dxCheckBox("instance").repaint();
+                }     
+                else
+                {                    
+                    DevExpress.ui.notify('Please check your information');
+                }
+            }
+        });
+    },
+  });
+  
+var validation =  $('#add-validation-contained').dxButton({
+    icon: 'card',
+    type: 'success',
+    text: 'Validate',
+    onClick(e) {
+        cashierIdValue = cashierId.dxTextBox("instance")._options._optionManager._options.text;
+          $.ajax({
+            type: "POST",
+            url: `${localUrl}/Validation?cashierId=${cashierIdValue}`,
+            success: function(resultData) { 
+                if (resultData.length > 0 ) {
+                    personnelStoreId = resultData[0]?.id;
+                    personnelStoreName = resultData[0]?.description;
+                    personnelPermission = resultData[0]?.permission;
+                    DevExpress.ui.notify('Cashier Id is true');                      
+                    jQuery('.validationPanel').removeClass('active');
+                    cashierId.dxTextBox("instance")._options._optionManager._options.text = '';                    
+                    cashierId.dxTextBox("instance").repaint();                   
+                    dataGrid.dxDataGrid("instance").refresh();              
+                    weeklyReportGrid.dxDataGrid("instance").refresh();          
+                    barcodeGrid.dxDataGrid("instance").refresh();
+                        products =  
+                                        $.ajax
+                                        ({
+                                                  type: 'GET',
+                                                  url:`${localUrl}/GetItemInfo`, 
+                                                  data: {storeId: personnelStoreId},
+                                                  async: false,
+                                                  onBeforeSend(method, ajaxOptions) {
+                                                    ajaxOptions.xhrFields = { withCredentials: true };
+                                                  },
+                                            success: function(result) {
+                                                saleProductName.dxSelectBox("instance")._dataSource._items = result;
+                                                saleProductName.dxSelectBox("instance")._options._optionManager._options.dataSource = result;
+                                                saleProductName.dxSelectBox("instance")._options._optionManager._options.items = result;
+                                                saleProductName.dxSelectBox("instance")._dataSource._store._array = result
+                                                saleProductName.dxSelectBox("instance").repaint();
+                                            }
+                                        }); 
+                }
+                else { 
+                    DevExpress.ui.notify('Cashier Id is wrong');
+                    cashierId.dxTextBox("instance")._options._optionManager._options.text = '';                   
+                    cashierId.dxTextBox("instance").repaint();
+                }                   
+            },
+
+        });  
+    },
+  });
+
+var reportPageButton = $('#icon-back').dxButton({
+    icon: 'bookmark',
+    onClick() {        
+                              var RedirectUrl = "yourUrl" ;
+                            location.href = `${RedirectUrl}`;
+    },
+  });
+
+//var printAllButton = $('#printAllButton').dxButton({
+//stylingMode: 'contained',
+//text: 'Print All Barcodes',
+//type: 'success',
+//onClick() {
+//  DevExpress.ui.notify('The Contained button was clicked');
+//},
+//});
+
+var openChatPanel =  $('#open-chat-panel').dxButton({
+    hint: 'Open Chat Panel',
+    icon: 'comment',
+    type: 'success',
+    text: 'Chat',
+    onClick(e) {            
+       jQuery('.chatPanel').addClass('active');
+       
+    },
+  });
+  var messageAreaList = $('#messageArea').dxList({
+    //dataSource: ['Prepare 2016 Financial', 'Prepare 2016 Marketing Plan', 'test 3','test 4'], 
+         searchEnabled: true,
+         dataSource: new DevExpress.data.CustomStore({
+            key: "id",
+            //loadMode: "raw", 
+            load: function() {
+                var d = $.Deferred();
+                return $.getJSON(`${localUrl}/GetMessages?fromStore=Store 1&toStore=Store 2`, { 
+                        "message": "message"
+                    })
+                    .done(function(result) {
+                        
+                    })
+                    .fail(function() {
+                        //throw "Data loading error";
+                    });
+            }
+        })
+    });
+
+  var sendMessageButton = $('#sendMessage').dxTextBox({
+    placeholder: 'write message here',
+    stylingMode: 'filled',
+    buttons: [{
+      name: 'sendMessage',
+      location: 'after',
+      options: {
+        hint: 'Send Message',
+        icon: 'message',
+        type: 'success',
+        onClick() {
+            
+        },
+      },
+    }],
+  }).dxTextBox('instance');
+//Data Source
+
+var products =  
+    $.ajax
+                  ({
+                            type: 'GET',
+                            url:`${localUrl}/GetItemInfo`, 
+                            data: {key: 'itemId'},
+                            async: false,
+                            onBeforeSend(method, ajaxOptions) {
+                              ajaxOptions.xhrFields = { withCredentials: true };
+                            },
+                            success: function(result){}
+                  });
+
+var departmentDataSource =  
+    $.ajax
+                  ({
+                            type: 'GET',
+                            url:`${localUrl}/GetDepartment`, 
+                            data: {key: 'id'},
+                            async: false,
+                            success: function(result){}
+                  });
+
+var categoryDataSource = 
+    $.ajax
+                  ({
+                            type: 'GET',
+                            url:`${localUrl}/GetCategory`, 
+                            data: {key: 'id'},
+                            async: false,
+                            success: function(result){}
+                  });
+
+var storeDataSource = 
+    $.ajax
+                  ({
+                            type: 'GET',
+                            url:`${localUrl}/GetStore`, 
+                            data: {key: 'id'},
+                            async: false,
+                            success: function(result){}
+                  });
+
+
+//storeDataSource.load()
+//    .done(function(data) {
+//        addStore.dxSelectBox('instance')._options._optionManager._options.dataSource = data ;
+//        addStore.dxSelectBox('instance')._options._optionManager._options.items = data ;
+//        addStore.dxSelectBox('instance')._options._optionManager._options.text = '' ;
+//        addStore.dxSelectBox("getDataSource").reload();
+//    });
+ 
+   var addStore =  $("#addStore").dxSelectBox({
+            dataSource: storeDataSource.responseJSON,
+            valueExpr: "id",
+            displayExpr: "description"
+        });
+
+
+
+        
+//DataGrid
+var dataGrid = $('#widget').dxDataGrid({   
+    dataSource: DevExpress.data.AspNet.createStore({
+        key: ['itemId','storeId'],
+      loadUrl: `${localUrl}/GetInventoryList`,
+      onBeforeSend(method, ajaxOptions) {
+        ajaxOptions.xhrFields = { withCredentials: true };
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?storeId=" + personnelStoreId ;
+      },
+    }),       
+    scrolling: {
+      mode: 'virtual',
+    },
+    showBorders: true,
+    allowColumnResizing: true,
+    columnAutoWidth: true,
+    columnWidth: "auto",
+    onContentReady: function (e) {  
+          if ($("#createButton").length == 0) {  
+                                  var $customButton =  $("<a id='createButton' i />")   
+                                    .text("Upload")
+                                  .addClass("btn btn-primary" )  
+                                .click(function(){                                
+                                   jQuery('.sidePanel').addClass('upload');
+                                }); 
+                                  var toolbar = e.element  
+                                    .find('.dx-toolbar-after');  
+                                 $(toolbar.get(0))  
+                                    .prepend($customButton);  
+          }  
+          if ($("#salesButton").length == 0) {  
+                                  var $customButton =  $("<a id='salesButton' i />")   
+                                    .text("Invoice") 
+                                  .addClass("btn btn-sales-primary" )  
+                                .click(function(){    
+                                    //salesGrid.dxDataGrid("instance")._options._optionManager._options.filterValue[2] = personnelStoreId;
+                                    salesGrid.dxDataGrid("instance").refresh();                                    
+                                    dataGrid.dxDataGrid("instance").clearSelection();
+                                    jQuery('#giftCardCode').removeClass('active');
+                                    jQuery('.salesPanel').addClass('active');
+                                    document.getElementsByClassName("dx-overlay-content")[1].style.visibility = "hidden";                                    
+                                }); 
+                                  var toolbar = e.element  
+                                    .find('.dx-toolbar-after');  
+                                 $(toolbar.get(0))  
+                                    .prepend($customButton);  
+          }   
+          if ($("#personnelButton").length == 0) {  
+                                  var $customButton =  $("<a id='personnelButton' i />")  
+                                    .text("Cashier") 
+                                  .addClass("btn btn-personnel-primary" )  
+                                .click(function(){    
+                                     jQuery('.validationPanel').addClass('active');
+                                }); 
+                                  var toolbar = e.element  
+                                    .find('.dx-toolbar-after');  
+                                 $(toolbar.get(0))  
+                                    .prepend($customButton);  
+          }    
+          if ($("#weeklyReportButton").length == 0) {  
+                                  var $customButton =  $("<a id='weeklyReportButton' i />")  
+                                    .text("Weekly Report") 
+                                  .addClass("btn btn-personnel-primary" )  
+                                .click(function(){    
+                                     jQuery('.weeklyReportPanel').addClass('active');
+                                }); 
+                                  var toolbar = e.element  
+                                    .find('.dx-toolbar-after');  
+                                 $(toolbar.get(0))  
+                                    .prepend($customButton);  
+          }   
+          if ($("#barcodeButton").length == 0) {  
+                                  var $customButton =  $("<a id='barcodeButton' i />")  
+                                    .text("Barcode") 
+                                  .addClass("btn btn-personnel-primary" )  
+                                .click(function(){                                           
+                                     jQuery('.barcodePanel').addClass('active');
+                                }); 
+                                  var toolbar = e.element  
+                                    .find('.dx-toolbar-after');  
+                                 $(toolbar.get(0))  
+                                    .prepend($customButton);  
+          }   
+          if ($("#cashBoxButton").length == 0) {  
+                                  var $customButton =  $("<a id='cashBoxButton' i />")  
+                                    .text("Cash Box") 
+                                  .addClass("btn btn-personnel-primary" )  
+                                .click(function(){       
+                                     dailyEarningsDataSource = 
+                                            $.ajax
+                                                          ({
+                                                                    type: 'GET',
+                                                                    url:`${localUrl}/GetCashBox`, 
+                                                                    data: {storeId: personnelStoreId},
+                                                                    async: false,
+                                                                    success: function(result){  
+                                                                        if (result.length > 0) {
+                                                                            dailyEarnings.dxNumberBox("instance")._options._optionManager._options.value
+                                                                                = result[0].dailyEarnings;
+                                                                        }
+                                                                        else {
+                                                                            dailyEarnings.dxNumberBox("instance")._options._optionManager._options.value = 0
+                                                                        }
+                                                                        dailyEarnings.dxNumberBox("instance").repaint();              
+                                                                        jQuery('.cashBoxPanel').addClass('active');
+                                                                    },
+                                                          });
+                                }); 
+                                  var toolbar = e.element  
+                                    .find('.dx-toolbar-after');  
+                                 $(toolbar.get(0))  
+                                    .prepend($customButton);  
+          } 
+
+    },  
+    filterRow: {
+        applyFilter: "auto",
+        applyFilterText: "Apply filter",
+        betweenEndText: "End",
+        betweenStartText: "Start",
+        operationDescriptions: {},
+        resetOperationText: "Reset",
+        showAllText: "",
+        showOperationChooser: true,
+        visible: true
+    },
+    selection: {
+        mode: 'single',
+    },
+    searchPanel: {
+      visible: true,
+      width: 240,
+      placeholder: 'Search...',
+    },
+    headerFilter: {
+      visible: true,
+    },
+    columns: [
+        {
+            dataField: 'itemId',
+            caption: 'Id',
+            allowEditing: false,
+            width: 200,
+        },
+        {
+            dataField: 'itemName',
+            caption: 'Inventory Name',
+            allowEditing: false,
+            width: 250,
+        },
+        {
+            dataField: 'department',
+            caption: 'Department',
+            dataType: 'string',
+        },
+        {
+            dataField: 'category',
+            caption: 'Category',
+        },
+        {
+            dataField: 'inStock',
+            caption: 'In Stock',
+        },
+        {
+            dataField: 'inRepair',
+            caption: 'In Repair',
+        },
+        {
+            dataField: 'storeName',
+            caption: 'Store',
+        },
+        {
+            dataField: 'ebayPrice',
+            caption: 'Ebay Price',
+            format: 'currency',
+            format: {
+                type: "fixedPoint",
+                precision: 2
+            },
+        },
+        {
+            dataField: 'amazonPrice',
+            caption: 'Amazon Price',
+            format: 'currency',
+            format: {
+                type: "fixedPoint",
+                precision: 2
+            },
+        },
+        {
+            dataField: 'sellPrice',
+            caption: 'Sell Price',
+            format: 'currency',
+            format: {
+                type: "fixedPoint",
+                precision: 2
+            },
+        },
+        {
+            type: 'buttons',
+            buttons: 
+            [
+                {
+                icon: 'sorted',
+                hint: 'Repair to stock',
+                    onClick(e) {
+                        if (e.row.data.inRepair > 0) {                    
+                               var result = DevExpress.ui.dialog.confirm("<i>Do you want to add the product from the repair to the inventory?</i>", "Confirm changes");
+                               result.done(function(dialogResult) {
+                                    $.ajax({
+                                    type: "POST",
+                                    url: `${localUrl}/RepairToStock?itemId=${e.row.data.itemId}&storeId=${e.row.data.storeId}`,
+                                    success: function(resultData) {}
+                                    });                            
+                                   dataGrid.dxDataGrid("instance").refresh();
+                        });
+                        } else { 
+                            var result = DevExpress.ui.notify("There is no repaired product.", 'error', 2000, max);
+                        }                
+                    },
+                },                
+            ],
+        },
+    ],     
+    onRowUpdating(e) {
+        if (e.newData.usedPrice > e.oldData.usedPrice) {
+
+            $.ajax({
+                type: "POST",
+                url: `${localUrl}/UpdatePrice?price=${e.newData.usedPrice}&itemId=${e.key.itemId}`,
+                success: function(resultData) { ui.dialog("Save Complete") }
+            });
+        }
+        else {
+            $(function() {
+                var result = DevExpress.ui.notify("You gave a lower price.", 'error', 2000);
+            })
+        }
+    },
+});
+
+var salesGrid = $('#salesGrid').dxDataGrid({
+    dataSource: new DevExpress.data.AspNet.createStore({
+        key: ['itemId','id'],
+        keyExpr: 'itemId',
+        loadUrl: `${localUrl}/GetSaleInfo`,   
+        updateUrl: `${localUrl}/UpdateSaleInfo`, 
+        deleteUrl: `${localUrl}/DeleteSaleInfo`,    
+        onBeforeSend(method, ajaxOptions) {
+            ajaxOptions.xhrFields = { withCredentials: true };  
+             if (ajaxOptions.data.key)  
+            ajaxOptions.url += "?key=" + ajaxOptions.data.key   ;   
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?storeId=" + personnelStoreId ; 
+        },
+    }),      
+    scrolling: {
+      mode: 'virtual',
+    },
+    editing: {
+      mode: 'row',
+      allowUpdating: true,
+      allowDeleting: true,
+    },
+    //repaintChangesOnly: true,
+    showBorders: true,
+    allowColumnResizing: true,
+    showColumnLines: true,
+    showRowLines: true,
+    columns: [
+        {
+            dataField: 'id',
+            caption: 'Id',
+            allowEditing: false,
+            visible: false,
+
+        },
+        {
+            dataField: 'itemId',
+            caption: 'Id',
+            allowEditing: false, 
+            width: 100,
+        },
+        {
+            dataField: 'itemName',
+            caption: 'Name',
+            dataType: 'string',
+            allowEditing: false,
+            width: 500,
+        },
+        {
+            dataField: 'tradeIn',
+            caption: 'Trade In',
+            dataType: 'boolean',
+            value: false,
+            width: 100,
+        },
+        {
+            dataField: 'toRepair',
+            caption: 'Repair',
+            dataType: 'boolean',
+            value: false,
+            width: 100,
+        },
+        {
+            dataField: 'quantity',
+            caption: 'Quantity',
+            dataType: 'number',
+            value: 1,
+            width: 100,
+            allowEditing: false,
+        },
+        {
+            dataField: 'isDiscount',
+            caption: 'Discount',
+            dataType: 'boolean',
+            value: false,
+            width: 100,
+        },
+        {
+            dataField: 'grandTotal',
+            caption: 'Price',
+            dataType: "number",  
+            width: 100,
+            format: {
+                type: "fixedPoint",
+                precision: 2
+            },            
+            //allowEditing: false,
+        },  
+        {
+            dataField: 'storeId',
+            caption: 'Store',
+            dataType: 'number',
+            visible: false,
+        }, 
+        ],
+    summary: {
+          totalItems: [{
+            column: 'itemId',
+            summaryType: 'count',
+          },{
+            column: 'grandTotal',
+            summaryType: 'sum',
+            valueType: "currency",
+            valueFormat: 'fixedPoint',
+            precision: '2'    
+          },
+        ],
+    }, 
+    onRowUpdating(e) {
+        if(e.newData.tradeIn)
+        {
+            qualityProductId = e.key.id;
+            jQuery('.productQualitySelectionPanel').addClass('active');
+        }
+    },
+  });
+
+var weeklyReportGrid = $('#weeklyReportGrid').dxDataGrid({
+    dataSource: new DevExpress.data.AspNet.createStore({
+        key: 'id',
+        loadUrl: `${localUrl}/GetWeeklyReport`,
+        updateUrl: `${localUrl}/UpdateWeeklyReport`,
+        onBeforeSend(method, ajaxOptions) {
+            ajaxOptions.xhrFields = { withCredentials: true };   
+             if (ajaxOptions.data.key)  
+            ajaxOptions.url += "?key=" + ajaxOptions.data.key + "&cashierId=" + cashierIdValue  ;  
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?storeId=" + personnelStoreId ;
+        },
+    }),     
+    scrolling: {
+      mode: 'virtual',
+    },
+    showBorders: true,
+    allowColumnResizing: true,
+    columnAutoWidth: true,
+    columnWidth: "auto",
+    editing: {
+      mode: 'cell',
+      allowUpdating: true,
+    },
+    showBorders: true,
+    showColumnLines: true,
+    showRowLines: true,
+    columns: [
+        {
+            dataField: 'id',
+            caption: 'Product Id',
+            allowEditing: false,
+            width: 120,
+        },  
+        {
+            dataField: 'image',
+            width: 90,
+            cellTemplate(container, options) {
+              $('<div class="productImage">')
+                .append($('<img>', { src: options.value }))
+                .appendTo(container);
+            },
+            allowEditing: false,
+        },
+        {
+            dataField: 'name',
+            caption: 'Product Name',
+            dataType: 'string',
+            allowEditing: false,
+            width: 180,
+        },
+        {
+            dataField: 'count',
+            caption: 'Count',
+            dataType: 'number',
+            value: false,
+        },
+    ],
+  });
+
+var barcodeGrid = $('#barcodeGrid').dxDataGrid({
+    dataSource: new DevExpress.data.AspNet.createStore({
+        key: 'itemId',
+        loadUrl: `${localUrl}/GetBarcodeList`,
+        onBeforeSend(method, ajaxOptions) {
+            ajaxOptions.xhrFields = { withCredentials: true };   
+             if (ajaxOptions.data.key)  
+            ajaxOptions.url += "?key=" + ajaxOptions.data.key + "&cashierId=" + cashierIdValue ;  
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?storeId=" + (personnelStoreId == undefined ? 0 : personnelStoreId)  ;
+        },
+    }),     
+    scrolling: {
+      mode: 'virtual',
+    },    
+    selection: {
+      mode: 'single',
+    },
+    searchPanel: {
+      visible: true,
+      width: 240,
+      placeholder: 'Search...',
+    },
+    showBorders: true,
+    allowColumnResizing: true,
+    columnAutoWidth: false,
+    showColumnLines: true,
+    showRowLines: true,
+    columns: [
+        {
+            dataField: 'itemId',
+            caption: 'Id',
+            allowEditing: false,
+        },  
+        {
+            dataField: 'itemName',
+            caption: 'Name',
+            dataType: 'string',
+            allowEditing: false,
+        },
+        {
+            dataField: 'storeName',
+            caption: 'Store',
+            dataType: 'string',
+            allowEditing: false,
+        },
+        {
+            dataField: 'sellPrice',
+            caption: 'Price',
+            dataType: 'numeric',
+            allowEditing: false,
+        }, 
+        {
+            dataField: 'productBarcode',            
+            caption: 'Barcode',
+            width: 90,
+            cellTemplate(container, options) {
+              $('<div class="productImage">')
+                .append($('<img>', { src: options.value }))
+                .appendTo(container);
+            },
+        },
+        {
+            type: 'buttons',
+            buttons: [
+            {
+                icon: 'print',
+                hint: 'Print Product',
+                onClick(e) {
+                               $.ajax({
+                                type: "POST",
+                                url: `${localUrl}/PrintProduct?itemId=${e.row.data.itemId}&itemName=${e.row.data.itemName}&sellPrice=${e.row.data.sellPrice}&storeId=${personnelStoreId}`,
+                                success: function(resultData) { 
+                                    DevExpress.ui.notify('Product added to print queue'); 
+                                    barcodeGrid.dxDataGrid("instance").refresh();
+                                   }
+                                });
+                           },
+                },
+            ],
+        },
+    ],
+    
+  });
+
+var invoiceDetailReport = $('#IndexInvoiceDetail').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({
+		key: 'invoiceId',
+		loadUrl: `${localUrl}/InvoiceDetailList`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?invPerId=" + invPerId;
+		},
+	}), columnChooser: {
+      enabled: true,
+    },
+	repaintChangesOnly: true,	
+    onContentReady: function (e) {  
+          if ($("#closeButton").length == 0) {  
+                                  var $customButton =  $("<a id='closeButton' i />")   
+                                    .text("Close")
+                                  .addClass("btn btn-primary" )  
+                                .click(function(){                                
+								jQuery('.demo-index-invoice-detail').removeClass('active');
+                                }); 
+                                  var toolbar = e.element  
+                                    .find('.dx-toolbar-after');  
+                                 $(toolbar.get(0))  
+                                    .prepend($customButton);  
+          }  
+    },    
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	showBorders: false,
+	showColumnLines: false,
+	showRowLines: true,
+	headerFilter: {
+	  visible: true,
+	},
+    export: {
+      enabled: true,
+      formats: ['pdf'],
+      allowExportSelectedData: false,
+    },
+    onExporting(e) {
+        
+        const doc = new jsPDF();
+      DevExpress.pdfExporter.exportDataGrid({
+        jsPDFDocument: doc,
+        component: e.component,
+        indent: 5,
+      }).then(() => {
+        doc.save('Invoice.pdf');
+      });
+    },
+	columns: [
+		{
+			dataField: 'invoiceId',
+			caption: 'Invoice',
+			dataType: 'numeric',
+		},
+        {
+		caption: 'Product Information',
+		columns: [				
+		{
+			dataField: 'productId',
+			caption: 'Product Id',
+			dataType: 'numeric',
+		},
+		{
+			dataField: 'productName',
+			caption: 'Product Name',
+			dataType: 'string',
+		},
+		],
+		},
+		{
+			dataField: 'quantity',
+			caption: 'Quantity',
+			dataType: 'numeric',
+		},
+        {
+            caption: 'Personnel Information',
+			visible: false,
+            columns: [
+                {
+                    dataField: 'personnelName',
+                    caption: 'Name',
+                    dataType: 'string',
+					visible: false,
+                },
+                {
+                    dataField: 'storeName',
+                    caption: 'Store',
+                    dataType: 'string',
+                },
+            ]
+        },
+		{
+			dataField: 'paymentMethod',
+			caption: 'Payment Method',
+			dataType: 'string',
+			visible: false,
+		},
+		{
+			dataField: 'sellPrice',
+			caption: 'Sell Price',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+        {
+            caption: 'Price Details',
+            columns: [
+                {
+                    dataField: 'subTotal',
+                    caption: 'Sub Total',
+                    dataType: 'currency',
+                    format: {
+                        type: "fixedPoint",
+                        precision: 2
+                    },
+                },
+                {
+                    dataField: 'taxTotal',
+                    caption: 'Tax Total',
+                    dataType: 'currency',
+                    format: {
+                        type: "fixedPoint",
+                        precision: 2
+                    },
+                },
+                {
+                    dataField: 'grandTotal',
+                    caption: 'Grand Total',
+                    dataType: 'currency',
+                    format: {
+                        type: "fixedPoint",
+                        precision: 2
+                    },
+                },
+            ],
+        },
+		{
+			dataField: 'customerPhone',
+			caption: 'Customer Phone',
+			dataType: 'numeric',
+		},
+		{
+			dataField: 'getDate',
+			caption: 'Date',
+			dataType: "date", 
+		},
+	],
+  });
+
+var productRequestGrid = $('#productRequestGrid').dxDataGrid({   
+    dataSource: DevExpress.data.AspNet.createStore({
+        key: 'itemId',
+      loadUrl: `${localUrl}/GetProductRequestList`,
+      onBeforeSend(method, ajaxOptions) {
+        ajaxOptions.xhrFields = { withCredentials: true };
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?cashierId=" + cashierIdValue ;
+      },
+    }),       
+    scrolling: {
+      mode: 'virtual',
+    },
+    showBorders: true,
+    allowColumnResizing: true,
+    columnAutoWidth: true,
+    columnWidth: "auto",
+    filterRow: {
+        applyFilter: "auto",
+        applyFilterText: "Apply filter",
+        betweenEndText: "End",
+        betweenStartText: "Start",
+        operationDescriptions: {},
+        resetOperationText: "Reset",
+        showAllText: "",
+        showOperationChooser: true,
+        visible: true
+    },
+    selection: {
+        mode: 'single',
+    },
+    searchPanel: {
+      visible: true,
+      width: 240,
+      placeholder: 'Search...',
+    },
+    headerFilter: {
+      visible: true,
+    },
+    columns: [
+        {
+            dataField: 'itemId',
+            caption: 'Id',
+            allowEditing: false,
+            width: 200,
+        },
+        {
+            dataField: 'itemName',
+            caption: 'Inventory Name',
+            allowEditing: false,
+            width: 250,
+        },
+        {
+            dataField: 'sellPrice',
+            caption: 'Sell Price',
+            format: 'currency',
+            format: {
+                type: "fixedPoint",
+                precision: 2
+            },
+            visible:false
+        },
+        {
+            type: 'buttons',
+            buttons: 
+            [
+                {
+                icon: 'plus',
+                hint: 'Create product request',
+                    onClick(e) {                   
+                               var result = DevExpress.ui.dialog.confirm(`<i>Do you want to create ${e.row.data.itemName} request?</i>`, "Product Request");
+                        result.done(function(dialogResult) {
+                                
+                                
+                                $.ajax({
+                                    type: "POST",
+                                    url: `${localUrl}/CreateProductRequest?itemId=${e.row.data.itemId}&itemName=${e.row.data.itemName}&storeId=${personnelStoreId}&sellPrice=${e.row.data.sellPrice}&cashierId=${cashierIdValue}`,
+                                    success: function(resultData) {                                 
+                                            dataGrid.dxDataGrid("instance").refresh(); 
+                                             productIdValue = e.row.data.itemId;
+                                             productNameValue = e.row.data.itemName;
+                                             sellPriceValue = e.row.data.sellPrice;                              
+                                             saleButton.dxButton('instance')._options._optionManager._options.onClick();
+                                             jQuery('.productRequestPanel').removeClass('active'); 
+                                    }
+                                });
+                            
+                                        
+                        });
+                               
+                                  
+                    },
+                },
+            ],
+        },
+    ], 
+});
+
+//Dropzone
+  $('#file-uploader').dxFileUploader({
+    dialogTrigger: '#dropzone-external',
+    dropZone: '#dropzone-external',
+    multiple: true,
+    uploadMode: 'instantly',
+    uploadUrl: 'https://js.devexpress.com/Demos/NetCore/FileUploader/Upload',
+    visible: false,
+    onDropZoneEnter(e) {
+      if (e.dropZoneElement.id === 'dropzone-external') { toggleDropZoneActive(e.dropZoneElement, true); }
+    },
+    onDropZoneLeave(e) {
+      if (e.dropZoneElement.id === 'dropzone-external') { toggleDropZoneActive(e.dropZoneElement, false); }
+    },
+    onUploaded(e) {
+      const { file } = e;
+     var formData = new FormData();
+     var uploadFile = file;
+     formData.append("file", uploadFile);
+     if(e.file.name.split('.')[1] == 'xlsx' && personnelPermission == 'Admin')
+     {         
+        $.ajax({
+            type: "POST",
+            url: `${localUrl}/UploadFile?personnelId=${cashierIdValue}&storeId=${personnelStoreId}`,
+            data: formData,
+            contentType: false,
+            processData: false,
+            success : function () {           
+                dataGrid.dxDataGrid("instance").refresh();  
+                weeklyReportGrid.dxDataGrid("instance").refresh();  
+                       }
+        });   
+     }
+     else if(e.file.name.split('.')[1] == 'txt')
+     {
+           $.ajax({
+            type: "POST",
+            url: `${localUrl}/UploadFile?personnelId=${cashierIdValue}&storeId=${personnelStoreId}`,
+            data: formData,
+            contentType: false,
+            processData: false,
+            success : function () {           
+                dataGrid.dxDataGrid("instance").refresh();  
+                weeklyReportGrid.dxDataGrid("instance").refresh();  
+                       }
+        });  
+     }
+     else
+     {         
+               DevExpress.ui.notify("You do not have access to upload this file", 'error', 2000);
+     }
+      const dropZoneText = document.getElementById('dropzone-text');
+      const fileReader = new FileReader();
+      fileReader.onload = function () {
+        toggleDropZoneActive(document.getElementById('dropzone-external'), false);
+        const dropZoneImage = document.getElementById('dropzone-image');
+        //dropZoneImage.src = fileReader.result;
+      };
+      fileReader.readAsDataURL(file);
+      uploadProgressBar.option({
+        visible: false,
+        value: 0,
+      });
+    },
+    onProgress(e) {
+      uploadProgressBar.option('value', (e.bytesLoaded / e.bytesTotal) * 100);      
+      jQuery('.sidePanel').removeClass('upload');    
+    },
+    onUploadStarted() {
+      //toggleImageVisible(false);
+      uploadProgressBar.option('visible', true);
+    },
+  });
+
+  const uploadProgressBar = $('#upload-progress').dxProgressBar({
+    min: 0,
+    max: 100,
+    width: '30%',
+    showStatus: false,
+    visible: false,
+  }).dxProgressBar('instance');
+
+  function toggleDropZoneActive(dropZone, isActive) {
+    if (isActive) {
+      dropZone.classList.add('dx-theme-accent-as-border-color');
+      dropZone.classList.remove('dx-theme-border-color');
+      dropZone.classList.add('dropzone-active');
+    } else {
+      dropZone.classList.remove('dx-theme-accent-as-border-color');
+      dropZone.classList.add('dx-theme-border-color');
+      dropZone.classList.remove('dropzone-active');
+    }
+  }
+
+//TextBoxes
+  var productId = $('#productId').dxTextBox({
+    disabled: true,
+  });
+  var productName = $('#productName').dxTextBox({
+    disabled: true,
+  });
+  var discount = $('#discount').dxNumberBox({
+    value: 0.0,
+    showClearButton: true,
+    onValueChanged(data) {
+        var buyPriceValue = buyPrice.dxNumberBox("instance")._options._optionManager._options.value;
+        var discountValue = data.value;
+     buyPriceValue = buyPriceValue - (buyPriceValue * discountValue  / 100)
+        buyPrice.dxNumberBox("instance")._options._optionManager._options.value = buyPriceValue;
+        buyPrice.dxNumberBox("instance").repaint();
+    },
+  });
+  var buyPrice = $('#buyPrice').dxNumberBox({
+    showClearButton: true,
+  });
+  var isRepair = $('#switch-on').dxSwitch({
+    value: false,
+  });
+  var saleProductId = $('#saleProductId').dxNumberBox({
+     onValueChanged(data) {
+          saleProductIdValue = saleProductId.dxNumberBox("instance")._options._optionManager._options.text;
+          $.ajax
+                                        ({
+                                                  type: 'GET',
+                                                  url:`${localUrl}/GetItemInfo`, 
+                                                  data: {storeId: personnelStoreId , itemId : saleProductIdValue},
+                                                  async: false,
+                                                  onBeforeSend(method, ajaxOptions) {
+                                                    ajaxOptions.xhrFields = { withCredentials: true };  
+                                                  },
+                                                  success: function(result){
+                                                       productIdValue = result[0].itemId;
+                                                       productNameValue = result[0].itemName;
+                                                       sellPriceValue = result[0].sellPrice
+                                                      saleProductName.dxSelectBox("instance")._options._optionManager._options.value = result[0].itemId;
+                                                      saleProductName.dxSelectBox("instance")._options._optionManager._options.text = result[0].itemName;
+                                                      saleProductName.dxSelectBox("instance").repaint();
+                                                  }
+                                        }); 
+         saleButton.dxButton('instance')._options._optionManager._options.onClick();
+    },
+  });
+  var saleProductName = $('#saleProductName').dxSelectBox({  
+      
+    dataSource: products.responseJSON,
+    displayExpr: 'itemName',
+    valueExpr: 'itemId',
+    searchEnabled: true,
+    dropDownOptions: {  
+           minWidth: 500,  
+           // maxWidth: 5,  
+        },
+    onValueChanged(data) {
+         sellPriceValue = saleProductName.dxSelectBox("instance")._options._optionManager._options.selectedItem.sellPrice;
+         productIdValue = saleProductName.dxSelectBox("instance")._options._optionManager._options.selectedItem.itemId;
+         productNameValue = saleProductName.dxSelectBox("instance")._options._optionManager._options.selectedItem.itemName
+         saleProductId.dxNumberBox("instance")._options._optionManager._options.value = productIdValue;
+         saleProductId.dxNumberBox("instance")._options._optionManager._options.text = productIdValue;         
+         saleProductId.dxNumberBox("instance").repaint();
+         saleButton.dxButton('instance')._options._optionManager._options.onClick();
+    },
+  });
+  var saleQuantity = $('#saleQuantity').dxNumberBox({
+    value: 1,
+    showClearButton: true,  
+     onValueChanged(data) {
+         sellPrice.dxNumberBox("instance")._options._optionManager._options.value = sellPriceValue * data.value;
+         sellPrice.dxNumberBox("instance")._options._optionManager._options.text = sellPriceValue * data.value;          
+         sellPrice.dxNumberBox("instance").repaint();
+    },
+  });
+  var saleDiscount = $('#saleDiscount').dxNumberBox({
+    value: 0,   
+    //format: '#0%',
+    showClearButton: true,
+    onValueChanged(data) {
+        sellPriceValue = (saleProductName.dxSelectBox("instance")._options._optionManager._options.selectedItem.sellPrice - 
+                    saleProductName.dxSelectBox("instance")._options._optionManager._options.selectedItem.sellPrice * (data.value / 100)) * 
+                    saleQuantity.dxNumberBox("instance")._options._optionManager._options.value ;
+        sellPrice.dxNumberBox("instance")._options._optionManager._options.value = sellPriceValue;
+        sellPrice.dxNumberBox("instance")._options._optionManager._options.text = sellPriceValue;
+        sellPrice.dxNumberBox("instance").repaint();
+    },
+  });
+  var sellPrice = $('#sellPrice').dxNumberBox({
+    showClearButton: true,
+    format: '$ #,##0.##',
+  });  
+  var tradeIn = $('#sale-switch-on').dxSwitch({
+    value: false,
+    onValueChanged(data) {
+        
+        if(data.value == true)
+        {            
+            oldSellPrice = sellPrice.dxNumberBox("instance")._options._optionManager._options.value;
+            toRepair.dxSwitch("instance")._options._optionManager._options.disabled = false;
+            toRepair.dxSwitch("instance").repaint();
+        }        
+    },
+  }); 
+  var toRepair = $('#saleRepair-switch-on').dxSwitch({
+    value: false,
+    disabled : false,
+    onValueChanged(data) {
+        //if(data.value == true)
+        //{
+        //    var newSaleDiscount = saleDiscount.dxNumberBox("instance")._options._optionManager._options.value = 15
+        //    saleDiscount.dxNumberBox("instance").repaint();
+        //    sellPrice.dxNumberBox("instance")._options._optionManager._options.value = sellPrice.dxNumberBox("instance")._options._optionManager._options.value * newSaleDiscount / 100;       
+        //    sellPrice.dxNumberBox("instance").repaint();
+        //}
+        //else
+        //{
+        //    saleDiscount.dxNumberBox("instance")._options._optionManager._options.value = 0
+        //    saleDiscount.dxNumberBox("instance").repaint();
+        //    sellPrice.dxNumberBox("instance")._options._optionManager._options.value = oldSellPrice       
+        //    sellPrice.dxNumberBox("instance").repaint();
+        //}
+    },
+  });
+   var addProductId = $('#addProductId').dxNumberBox({
+  });
+  var addProductName = $('#addProductName').dxTextBox({
+  });
+   var addDepartment = $('#addDepartment').dxSelectBox({
+    dataSource: departmentDataSource.responseJSON,
+    displayExpr: 'description',
+    valueExpr: 'id',
+    searchEnabled: true,
+  });
+    var addCategory = $('#addCategory').dxSelectBox({    
+    dataSource: categoryDataSource.responseJSON,
+    displayExpr: 'description',
+    valueExpr: 'id',
+    //searchEnabled: true,
+     onValueChanged(data) {       
+    },
+  });
+   var addSellPrice = $('#addSellPrice').dxNumberBox({
+    value: 0,   
+    showClearButton: true,
+    onValueChanged(data) {
+    },
+  });  
+   var addStock = $('#addStock').dxNumberBox({
+    value: 0,   
+    showClearButton: true,
+    onValueChanged(data) {
+    },
+  });
+  
+  var cashierId = $('#cashierId').dxTextBox({
+      mode: 'password',
+      placeholder: 'Please enter your cashier id',      
+  });
+  
+    var cashierInvoiceId = $('#cashierInvoiceId').dxTextBox({
+        //mode:'password',
+      placeholder: 'Please enter your cashier token',
+  });
+      var customerPhoneNumber = $('#customerPhoneNumber').dxTextBox({      
+        mask: '+1 (000) 000-0000',
+        maskRules: {
+          X: /[02-9]/,
+        },
+  });
+
+  var cash =  $('#cashCheckBox').dxCheckBox({
+    value: null,
+    iconSize: 30,
+    onValueChanged(){
+        creditCard.dxCheckBox("instance")._options._optionManager._options.value = false;
+        creditCard.dxCheckBox("instance").repaint();
+        giftCardCode.dxTextBox("instance")._options._optionManager._options.value = ''
+        giftCardCode.dxTextBox("instance")._options._optionManager._options.text = ''
+        giftCardCode.dxTextBox("instance").repaint();
+        jQuery('#giftCardCode').removeClass('active');
+        if (giftCard.dxCheckBox("instance")._options._optionManager._options.value != true && cash.dxCheckBox("instance")._options._optionManager._options.value == true) {
+            $.ajax({
+                type: "POST",
+                url: `${localUrl}/ChangeCashTradeIn?storeId=${personnelStoreId}`,
+                success: function(resultData) {
+                    salesGrid.dxDataGrid("instance").refresh();
+                }
+            });
+        }
+        else if(giftCard.dxCheckBox("instance")._options._optionManager._options.value == true && cash.dxCheckBox("instance")._options._optionManager._options.value == true) {
+            $.ajax({
+                type: "POST",
+                url: `${localUrl}/ChangeReCashTradeIn?storeId=${personnelStoreId}`,
+                success: function(resultData) {
+                    salesGrid.dxDataGrid("instance").refresh();
+                }
+            });
+        }        
+        giftCard.dxCheckBox("instance")._options._optionManager._options.value = false;
+        giftCard.dxCheckBox("instance").repaint();
+    },
+  });
+
+  var creditCard =  $('#creditCardCheckBox').dxCheckBox({
+    value: null,
+    iconSize: 30,
+    onValueChanged(){
+        cash.dxCheckBox("instance")._options._optionManager._options.value = false;
+        cash.dxCheckBox("instance").repaint();
+        giftCard.dxCheckBox("instance")._options._optionManager._options.value = false;
+        giftCard.dxCheckBox("instance").repaint();
+        giftCardCode.dxTextBox("instance")._options._optionManager._options.value = ''
+        giftCardCode.dxTextBox("instance")._options._optionManager._options.text = ''
+        giftCardCode.dxTextBox("instance").repaint();
+         $.ajax({
+            type: "POST",
+            url: `${localUrl}/ChangeCreditCardTradeIn?storeId=${personnelStoreId}`,
+            success: function(resultData) { 
+                    salesGrid.dxDataGrid("instance").refresh();
+               }
+            });
+        jQuery('#giftCardCode').removeClass('active');
+    },
+  });
+
+  var giftCard =  $('#giftCardCheckBox').dxCheckBox({
+    value: null,
+    iconSize: 30,
+    onValueChanged(){
+        creditCard.dxCheckBox("instance")._options._optionManager._options.value = false;
+        creditCard.dxCheckBox("instance").repaint();
+        jQuery('#giftCardCode').addClass('active'); 
+        if (cash.dxCheckBox("instance")._options._optionManager._options.value != true && giftCard.dxCheckBox("instance")._options._optionManager._options.value == true) {            
+            $.ajax({
+            type: "POST",
+            url: `${localUrl}/ChangeGiftCodeTradeIn?storeId=${personnelStoreId}`,
+            success: function(resultData) { 
+                    salesGrid.dxDataGrid("instance").refresh();
+               }
+            });
+        }
+        else if(cash.dxCheckBox("instance")._options._optionManager._options.value == true && giftCard.dxCheckBox("instance")._options._optionManager._options.value == true) {
+             $.ajax({
+            type: "POST",
+            url: `${localUrl}/ChangeReGiftCodeTradeIn?storeId=${personnelStoreId}`,
+            success: function(resultData) { 
+                    salesGrid.dxDataGrid("instance").refresh();
+               }
+            });
+        }        
+        cash.dxCheckBox("instance")._options._optionManager._options.value = false;
+        cash.dxCheckBox("instance").repaint();
+    },
+  });
+
+  var giftCardCode = $('#giftCardCode').dxTextBox({
+    value: null,
+  });
+
+  
+  var totalSellPrice = $('#totalSellPrice').dxNumberBox({
+      value : sellPriceTotalValue,
+      disabled: true,
+      
+  });
+
+  
+  var totalSellPriceCard = $('#totalSellPriceCard').dxNumberBox({
+      value : sellPriceTotalValue,
+      disabled: true,
+      
+  });
+  var customerCash = $('#customerCash').dxNumberBox({
+      format: '$ #,##0.##',
+      showClearButton: true,
+      onValueChanged() {
+          var customerChangeValue = customerCash.dxNumberBox("instance")._options._optionManager._options.value;
+          sellPriceTotalValue = totalSellPrice.dxNumberBox('instance')._options._optionManager._options.value;
+          customerChange.dxNumberBox("instance")._options._optionManager._options.text = (customerChangeValue - sellPriceTotalValue );
+          customerChange.dxNumberBox("instance")._options._optionManager._options.value = (customerChangeValue - sellPriceTotalValue ).toFixed(2);
+            customerChange.dxNumberBox("instance").repaint();
+      }
+  });
+  var customerChange = $('#customerChange').dxNumberBox({  
+      value: 0,
+    disabled: true,
+  });
+
+  
+  var cashBox = $('#cashBox').dxNumberBox({  
+      value: 0,
+  });
+  var envelope = $('#envelope').dxNumberBox({  
+      value: 0,
+  });
+  var dailyEarnings = $('#dailyEarnings').dxNumberBox({  
+      value: 0,
+    disabled: true,
+  });
+
+  var invoiceSearch = $('#invoiceSearch').dxTextBox({
+    placeholder: 'Search Invoice or Phone',
+    stylingMode: 'filled',    
+    mode: 'text',
+    buttons: [{
+      name: 'search',
+      location: 'after',
+      options: {
+        icon: 'search',
+        type: 'default',
+        onClick(e) {
+            invPerId = invoiceSearch.dxTextBox('instance')._options._optionManager._options.value;
+								invoiceDetailReport.dxDataGrid("instance").refresh();  
+								jQuery('.demo-index-invoice-detail').addClass('active');
+        },
+      },
+    }],
+  });
+
+  
+var createRequestButton =  $('#createRequestButton').dxButton({
+    icon: 'plus',
+        onClick(e) { 
+            jQuery('.productRequestPanel').addClass('active');
+        },
+  });
+
+var goodQualityButton =  $('#goodQualityButton').dxButton({
+    stylingMode: 'contained',
+    text: 'Good',
+    type: 'success',
+        onClick(e) { 
+            qualityRate = 0;                
+            $.ajax({
+            type: "POST",
+            url: `${localUrl}/UpdateProductQuality?itemId=${qualityProductId}&qualityRate=${qualityRate}`,
+            success: function(resultData) { 
+                    salesGrid.dxDataGrid("instance").refresh(); 
+                    jQuery('.productQualitySelectionPanel').removeClass('active');
+               }
+            });            
+        },
+  });
+
+var normalQualityButton =  $('#normalQualityButton').dxButton({
+    stylingMode: 'contained',
+    text: 'Normal',
+    type: 'default',
+        onClick(e) {      
+            qualityRate = 5;              
+            $.ajax({
+            type: "POST",
+            url: `${localUrl}/UpdateProductQuality?itemId=${qualityProductId}&qualityRate=${qualityRate}`,
+            success: function(resultData) { 
+                    salesGrid.dxDataGrid("instance").refresh();                    
+                    jQuery('.productQualitySelectionPanel').removeClass('active');
+               }
+            });
+        },
+  });
+
+var badQualityButton =  $('#badQualityButton').dxButton({
+    stylingMode: 'contained',
+    text: 'Bad',
+    type: 'danger',
+        onClick(e) {      
+            qualityRate = 10;              
+            $.ajax({
+            type: "POST",
+            url: `${localUrl}/UpdateProductQuality?itemId=${qualityProductId}&qualityRate=${qualityRate}`,
+            success: function(resultData) { 
+                    salesGrid.dxDataGrid("instance").refresh(); 
+                    jQuery('.productQualitySelectionPanel').removeClass('active');
+               }
+            });
+        },
+  });
+
+  //Indicator
+  
+  $('#large-indicator').dxLoadIndicator({
+    height: 60,
+    width: 60,
+  });
+
+
+
+  //Validation
+    var global = 10;
+
+function noMovement() {
+    if (global == 0) {      
+      jQuery('.validationPanel').addClass('active');  
+      resetGlobal();                
+    } else {
+            global--;
+    }
+}
+
+function resetGlobal() {
+    global=10;                    
+}
+        
+$(document).ready(function(){
+    $('html').mousemove(function(event){
+        resetGlobal();
+    });
+    
+});
+
+
+
+setInterval(function(){noMovement()}, 60000);
+
+//setInterval(()=> {  
+//    messageAreaList.dxList("instance").reload();
+//    messageAreaList.dxList("instance")._options._optionManager._options.items = messageAreaList.dxList("instance")._options._optionManager._options.items.map(x => x.message);
+//    messageAreaList.dxList("instance").repaint();
+//}, 10000);  
+ 
+    </script>
+  </body>
+</html>

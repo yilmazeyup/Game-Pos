@@ -1,0 +1,132 @@
+﻿@page
+@model Registration
+@{
+    
+    ViewData["Title"] = "Welcome";
+}
+
+<html>
+  <head>
+      
+    <title>DevExtreme Demo</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+ 
+    <script src="https://code.jquery.com/jquery-3.6.0.js"  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="  crossorigin="anonymous"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme/20.2.11/js/dx.all.js"></script>
+    @*<script src="https://cdn3.devexpress.com/jslib/20.2.10/js/dx.all.js" integrity="sha384-ozHkXvNfWRYTck4Oe8VvOmsVe62rDezIvN/bfjEXUu/oCP5gj9I9iQsI2uinenkj sha512-aB3lPkBIfrEjVDRkL8FUqGD7+gd1O/LoIcnHxbz6wzggKICnMqIiOht9pOLXi2M/OVB3wzUeeA7CiFZtSKo1zg==" crossorigin="anonymous"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme-aspnet-data/2.8.6/dx.aspnet.data.min.js"></script>
+    @*<script src="https://cdn3.devexpress.com/jslib/20.2.10/js/dx.aspnet.data.js" integrity="sha384-HWupLljWo9zevxYp/z4IeXEWk/iGyDg5TuDJRNZB19O3TkCHTp7gZ4ommNawg5y5 sha512-9Q5R5jsQeasgFuR3aaR/gJKJ6q5EgDzzOCba3Wou8Vfnv4UBeygxttsePPF7qb+OKX2lLVdae1sLSVv23pEdvQ==" crossorigin="anonymous"></script>*@
+    <script src="https://cdn3.devexpress.com/jslib/20.2.10/js/dx.aspnet.mvc.js" integrity="sha384-L5rehcbx0pDnDciWZab36vy6rC5HX4nRv0l9w+WiafFamHa0pZqGYI3YvP8gOqRf sha512-2mdR52nzC8h8Qv4PXfE9Nf7s84H6k0g+5rf535WwkpMIYX9NqOaeWLAec03EfUtCfHYJou/2Rf6gRXKI6A31zw==" crossorigin="anonymous"></script>
+
+
+    
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/devextreme/20.2.11/css/dx.light.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/devextreme/20.2.11/css/dx.common.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/devexpress-diagram/2.0.45/dx-diagram.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/devexpress-diagram/2.0.45/dx-diagram.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/devexpress-gantt/2.0.40/dx-gantt.min.css" rel="stylesheet">      
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/devextreme/20.2.11/css/dx.common.css" rel="stylesheet">
+</head>
+  <body class="registration">
+
+      <div class="registrationPanel">          
+             <iframe src="https://embed.lottiefiles.com/animation/38435" style="z-index: 10;position: absolute;top: 28px;right: -49px;"></iframe>
+             <div class="dx-field-registration-label">First Name</div>
+                    <div class="dx-field-registration-value">
+                    <div id="firstName"></div>
+             </div>
+             <div class="dx-field-registration-label">Last Name</div>
+                    <div class="dx-field-registration-value">
+                    <div id="surName"></div>
+             </div>
+             <div class="dx-field-registration-label">Phone</div>
+                    <div class="dx-field-registration-value">
+                    <div id="customerPhone"></div>
+             </div>
+             <div class="dx-field-registration-label">Email</div>
+                    <div class="dx-field-registration-value">
+                    <div id="email"></div>
+             </div>
+             <div class="dx-field-privacy-label">
+                    <div id="privacy-policy"></div>                    
+                    <div class="dx-field-privacy-value" @*onclick="myFunction()"*@>I accept the Privacy Policy </div>
+             </div>
+             <div>
+               <div id="submit-button"></div>
+             </div>
+      </div>
+
+      <div class="succesfullPanel">
+            <div class="dx-field-registration-success-label">The invoice has been sent to the registered e-mail address.</div>
+      </div>
+
+      <div class="privacyPolicyPanel">
+             <div id="scrollview-demo">
+             </div>
+      </div>
+  
+
+
+
+  <script>
+      
+//var localUrl = "Registration";
+var localUrl = "yourUrl/Registration";
+
+function myFunction() {
+               jQuery('.privacyPolicyPanel').addClass('active');               
+               jQuery('.registrationPanel').addClass('active');
+}
+
+    var firstName = $('#firstName').dxTextBox({
+                    placeholder: 'Enter your first name',
+                  });
+    var surName = $('#surName').dxTextBox({
+                    placeholder: 'Enter your last name',
+                  });
+    var email = $('#email').dxTextBox({
+                    placeholder: 'Enter your email',
+                  });
+    var customerPhone = $('#customerPhone').dxTextBox({                    
+                    mask: '+1 (000) 000-0000',
+                    maskRules: {
+                      X: /[02-9]/,
+                    },
+                  });
+
+
+    var submit =  $('#submit-button').dxButton({
+                        stylingMode: 'contained',
+                        text: 'Submit',
+                        type: 'default',
+                        width: 120,
+                        onClick() {
+                              firstNameValue = firstName.dxTextBox("instance")._options._optionManager._options.value;
+                              surNameValue = surName.dxTextBox("instance")._options._optionManager._options.value;
+                              emailValue = email.dxTextBox("instance")._options._optionManager._options.value;
+                              customerPhoneValue = customerPhone.dxTextBox("instance")._options._optionManager._options.value;
+                              $.ajax
+                              ({
+                                  type: "POST",
+                                  url: `${localUrl}/SendMail?firstName=${firstNameValue}&surName=${surNameValue}&email=${emailValue}&customerPhone=${customerPhoneValue}`,
+                                  success: function(resultData) {                                  
+                                    jQuery('.registrationPanel').addClass('active');               
+                                    jQuery('.succesfullPanel').addClass('active');
+                                  }
+                              });
+                        },
+                    });
+
+      $('#privacy-policy').dxCheckBox({
+    value: false,
+        });
+
+  </script>
+  </body>
+</html>

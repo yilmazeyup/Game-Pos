@@ -1,0 +1,3336 @@
+﻿@page
+@model Admin
+@{
+	ViewData["Title"] = "Admin Page";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	  
+	<title>DevExtreme Demo</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+ 
+	<script src="https://code.jquery.com/jquery-3.6.0.js"  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="  crossorigin="anonymous"></script> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme/20.2.11/js/dx.all.js"></script>
+	@*<script src="https://cdn3.devexpress.com/jslib/20.2.10/js/dx.all.js" integrity="sha384-ozHkXvNfWRYTck4Oe8VvOmsVe62rDezIvN/bfjEXUu/oCP5gj9I9iQsI2uinenkj sha512-aB3lPkBIfrEjVDRkL8FUqGD7+gd1O/LoIcnHxbz6wzggKICnMqIiOht9pOLXi2M/OVB3wzUeeA7CiFZtSKo1zg==" crossorigin="anonymous"></script>*@
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/devextreme-aspnet-data/2.8.6/dx.aspnet.data.min.js"></script>
+	@*<script src="https://cdn3.devexpress.com/jslib/20.2.10/js/dx.aspnet.data.js" integrity="sha384-HWupLljWo9zevxYp/z4IeXEWk/iGyDg5TuDJRNZB19O3TkCHTp7gZ4ommNawg5y5 sha512-9Q5R5jsQeasgFuR3aaR/gJKJ6q5EgDzzOCba3Wou8Vfnv4UBeygxttsePPF7qb+OKX2lLVdae1sLSVv23pEdvQ==" crossorigin="anonymous"></script>*@
+	<script src="https://cdn3.devexpress.com/jslib/20.2.10/js/dx.aspnet.mvc.js" integrity="sha384-L5rehcbx0pDnDciWZab36vy6rC5HX4nRv0l9w+WiafFamHa0pZqGYI3YvP8gOqRf sha512-2mdR52nzC8h8Qv4PXfE9Nf7s84H6k0g+5rf535WwkpMIYX9NqOaeWLAec03EfUtCfHYJou/2Rf6gRXKI6A31zw==" crossorigin="anonymous"></script>
+
+
+	
+	<link rel="stylesheet" type="text/css" href="~/css/site.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/devextreme/20.2.11/css/dx.light.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/devextreme/20.2.11/css/dx.common.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/devexpress-diagram/2.0.45/dx-diagram.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/devexpress-diagram/2.0.45/dx-diagram.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/devexpress-gantt/2.0.40/dx-gantt.min.css" rel="stylesheet">      
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/devextreme/20.2.11/css/dx.common.css" rel="stylesheet">
+</head>
+  <body>
+
+	<div class="admin-menu">
+			<div class="admin-side-panel">
+				<div id="icon-report"></div>   
+			</div>
+			<div class="admin-side-panel">
+				<div id="icon-definition"></div>
+			</div>
+			<div class="admin-side-panel">
+				<div id="icon-settings"></div>
+			</div>          
+		</div>
+
+	<div class="report-menu">
+		<div class="report-sub-categories">
+			<div class="admin-side-panel">
+				<div id="icon-report-store"></div>   
+			</div>
+			<div class="admin-side-panel">
+				<div id="icon-report-personnel"></div>
+			</div>  
+			<div class="admin-side-panel">
+				<div id="icon-report-invoice"></div>
+			</div>  
+			<div class="admin-side-panel">
+				<div id="icon-report-customer"></div>
+			</div>     
+			<div class="admin-side-panel">
+				<div id="icon-report-stock"></div>
+			</div>       
+			<div class="admin-side-panel">
+				<div id="icon-report-product"></div>
+			</div>      
+			<div class="admin-side-panel">
+				<div id="icon-report-weeklyOrder"></div>
+			</div>        
+			<div class="admin-side-panel">
+				<div id="icon-report-undercount"></div>
+			</div>        
+			<div class="admin-side-panel">
+				<div id="icon-report-productRequest"></div>
+			</div>         
+			<div class="admin-side-panel">
+				<div id="icon-report-accessibility"></div>
+			</div>      
+		</div>
+	</div>    
+
+	<div class="definition-menu">
+		<div class="definition-sub-categories">
+			<div class="admin-side-panel">
+				<div id="icon-definition-document"></div>   
+			</div>
+			<div class="admin-side-panel">
+				<div id="icon-definition-personnel"></div>
+			</div>  
+			<div class="admin-side-panel">
+				<div id="icon-definition-category"></div>
+			</div>                  
+			<div class="admin-side-panel">
+				<div id="icon-definition-store"></div>
+			</div>                    
+			<div class="admin-side-panel">
+				<div id="icon-definition-product"></div>
+			</div>                 
+			<div class="admin-side-panel">
+				<div id="icon-definition-accessibility"></div>
+			</div>  
+		</div>
+	</div>  
+
+	
+	<div class="setting-menu">
+		<div class="setting-sub-categories">             
+			<div class="admin-side-panel">
+				<div id="icon-setting-price"></div>
+			</div>              
+			<div class="admin-side-panel">
+				<div id="icon-setting-weekly"></div>
+			</div>              
+			<div class="admin-side-panel">
+				<div id="icon-setting-promotion"></div>
+			</div>                 
+			<div class="admin-side-panel">
+				<div id="icon-setting-discount"></div>
+			</div>             
+			<div class="admin-side-panel">
+				<div id="icon-setting-accessibility"></div>
+			</div> 
+		</div>
+	</div> 
+
+	<div class="demo-container-report-store">
+	  <div id="storeReport"></div>
+	</div>
+
+	<div class="demo-container-report-personnel">
+	  <div id="personnelReport"></div>
+	</div>
+	
+	<div class="demo-container-report-invoice">
+	  <div id="invoiceReport"></div>
+	</div>
+	
+	<div class="demo-container-report-customer">
+	  <div id="customerReport"></div>
+	</div>
+	
+	<div class="demo-container-report-stock">
+	  <div id="stockReport"></div>
+	</div>
+	
+	<div class="demo-container-report-product">
+	  <div id="productReport"></div>
+	</div>
+
+	<div class="demo-container-report-weeklyOrder">
+	  <div id="weeklyOrderReport"></div>
+	  <div id="updateProductReport"></div>
+	</div>
+
+	<div class="demo-container-report-undercount">
+	  <div id="undercountReport"></div>
+	</div>
+
+	<div class="demo-container-report-productRequest">
+	  <div id="productRequestReport"></div>
+	</div>
+
+	<div class="demo-container-report-accessibility">
+	  <div id="accessibilityReport"></div>
+	</div>
+	
+	<div class="demo-container-definition-document">
+	  <div id="documentDefinition"></div>
+	</div>
+
+	<div class="demo-container-definition-category">
+	  <div id="categoryDefinition"></div>
+	</div>
+	
+	<div class="demo-container-definition-store">
+	  <div id="storeDefinition"></div>
+	</div>
+	
+	<div class="demo-container-definition-product">
+	  <div id="productDefinition"></div>
+	</div>
+	
+	<div class="demo-container-definition-accessibility">
+	  <div id="accessibilityDefinition"></div>
+	</div>
+	
+	<div class="demo-container-definition-personnel">
+	  <div id="personnelDefinition"></div>
+	</div>
+	
+	<div class="demo-container-setting-price">
+	  <div id="priceSetting"></div>
+	</div>
+
+	<div class="demo-container-setting-weekly">
+	  <div id="weeklyInventoryOrder"></div>
+	</div>
+
+	<div class="demo-container-setting-promotion">
+	  <div id="createPromotion"></div>
+	</div>
+
+	<div class="demo-container-setting-discount">
+	  <div id="discountUpdate"></div>
+	</div>
+
+	<div class="demo-container-setting-accessibility">
+	  <div id="accessibilitySetting"></div>
+	</div>
+
+	<div class="dx-field">
+	   <div class="dx-index-value">
+		 <div id="icon-admin-back"></div>
+	   </div>
+	</div>
+	
+	<div class="demo-container-invoice-detail">
+      <div id="InvoiceDetail"></div>
+    </div>	
+       
+       <div class="dx-viewport demo-container">
+          <div id="widget"></div>
+          <div id="action-add"></div>
+          <div id="action-remove"></div>
+          <div id="action-edit"></div> 
+          <div id="open-chat-panel"></div>
+       </div>
+
+	        <div id="addProductPanel" class="addProductPanel">          
+           <div id='closeAddProductButton' class='dx-icon-remove icon' ></div>
+            <div class="dx-field-value add">               
+              <div class="dx-field-label-add">Product Id</div>
+              <div id="addProductId" style="width: 300px;"></div>              
+           </div> 
+           <div class="dx-field-value add">               
+              <div class="dx-field-label-add">Product Name</div>
+              <div id="addProductName" style="width: 300px;"></div>              
+           </div>  
+           <div class="dx-field-value add">               
+              <div class="dx-field-label-add">Store</div>
+              <div id="addStore" style="width: 300px;"></div>              
+           </div>  
+           <div class="dx-field-value add">               
+              <div class="dx-field-label-add">Department</div>
+              <div id="addDepartment" style="width: 300px;"></div>              
+           </div>  
+           <div class="dx-field-value add">               
+              <div class="dx-field-label-add">Category</div>
+              <div id="addCategory" style="width: 300px;"></div>              
+           </div>  
+           <div class="dx-field-value add">               
+              <div class="dx-field-label-add">Stock</div>
+              <div id="addStock" style="width: 300px;"></div>              
+           </div>  
+           <div class="dx-field-value add">               
+              <div class="dx-field-label-add">Sell Price</div>
+              <div id="addSellPrice" style="width: 300px;"></div>              
+           </div>  
+           <div id="addProductClass" class="dx-field-value">
+               <div id="add-success-contained"></div>       
+               <div id="add-new-success-contained"></div>     
+           </div>
+      </div>
+
+	  <div id="validationPanel" class="validationPanel">                  
+              <div class="dx-field-label-add">Cashier</div>
+              <div id="cashierId" style="width: 80%;"></div>  
+               <div id="add-validation-contained"></div>      
+             </div>
+
+ <script>
+//var localUrl = 'yourUrl';
+
+var cashierIdValue ;
+var addDocument = '';
+var invoiceIdOutput = '';
+var personnelInformation = '';
+var personnelStoreId ;
+var addProductNameValue ;
+var addDepartmentValue  ;
+var addCategoryValue    ;
+var addStockValue       ;
+var addSellPriceValue   ;
+var addProductIdValue   ;
+var personnelStoreId    ;      
+var personnelStoreName  ;    
+var personnelPermission ;
+var permission;
+var definitionPermission;
+var settingPermission;
+//Load
+$(document).ready(function(){
+   jQuery('.validationPanel').addClass('active');
+});
+
+
+//Button
+
+var validation =  $('#add-validation-contained').dxButton({
+    icon: 'card',
+    type: 'success',
+    text: 'Validate',
+    onClick(e) {
+        cashierIdValue = cashierId.dxTextBox("instance")._options._optionManager._options.text;
+          $.ajax({
+            type: "POST",
+            url: `${localUrl}/Validation?cashierId=${cashierIdValue}`,
+            success: function(resultData) { 
+                if (resultData.length > 0 ) {
+                    personnelStoreId = resultData[0]?.id;
+                    personnelStoreName = resultData[0]?.description;
+                    personnelPermission = resultData[0]?.permission;
+                    DevExpress.ui.notify('Cashier Id is true');                      
+                    jQuery('.validationPanel').removeClass('active');
+                    cashierId.dxTextBox("instance")._options._optionManager._options.text = '';                    
+                    cashierId.dxTextBox("instance").repaint();  
+                }
+                else { 
+                    DevExpress.ui.notify('Cashier Id is wrong');
+                    cashierId.dxTextBox("instance")._options._optionManager._options.text = '';                   
+                    cashierId.dxTextBox("instance").repaint();
+                }                   
+            },		
+        });
+		permission =  
+				$.ajax
+							  ({
+										type: 'GET',
+										url:`${localUrl}/ReportPermission?personnelCode=${cashierIdValue}`, 
+										data: {key: 'personnelCode'},
+										async: false,
+										onBeforeSend(method, ajaxOptions) {
+										  ajaxOptions.xhrFields = { withCredentials: true };
+										},
+										success: function(result){}
+							  });
+		definitionPermission =  
+				$.ajax
+							  ({
+										type: 'GET',
+										url:`${localUrl}/DefinitionPermission?personnelCode=${cashierIdValue}`, 
+										data: {key: 'personnelCode'},
+										async: false,
+										onBeforeSend(method, ajaxOptions) {
+										  ajaxOptions.xhrFields = { withCredentials: true };
+										},
+										success: function(result){}
+							  });
+		settingPermission =  
+				$.ajax
+							  ({
+										type: 'GET',
+										url:`${localUrl}/SettingPermission?personnelCode=${cashierIdValue}`, 
+										data: {key: 'personnelCode'},
+										async: false,
+										onBeforeSend(method, ajaxOptions) {
+										  ajaxOptions.xhrFields = { withCredentials: true };
+										},
+										success: function(result){}
+							  });
+    },
+  });
+
+var addProductButton =  $('#add-success-contained').dxButton({
+    hint: 'Add Product',
+    icon: 'check',
+    type: 'success',
+    text: 'Done',
+    onClick(e) {
+            if (addStore.dxSelectBox("instance")._options._optionManager._options.value != null) 
+        {
+                //dataGrid.dxDataGrid("instance")._options._optionManager._options.selectedRowKeys[0] > 0 ? dataGrid.dxDataGrid("instance")._options._optionManager._options.selectedRowKeys[0] : null ;
+            if ( addProductId.dxNumberBox("instance")._options._optionManager._options.value > 0) {
+                addProductIdValue = dataGrid.dxDataGrid("instance")._options._optionManager._options.selectedRowKeys[0]?.itemId > 0 ? dataGrid.dxDataGrid("instance")._options._optionManager._options.selectedRowKeys[0].itemId : 0;
+            }
+            else {
+                addProductIdValue =  addProductId.dxNumberBox("instance")._options._optionManager._options.value;
+            }
+                addProductNameValue = addProductName.dxTextBox("instance")._options._optionManager._options.text;
+                addStoreValue = addStore.dxSelectBox("instance")._options._optionManager._options.value;
+                addDepartmentValue = addDepartment.dxSelectBox("instance")._options._optionManager._options.value > 0 ? addDepartment.dxSelectBox("instance")._options._optionManager._options.value : 1;
+                addCategoryValue = addCategory.dxSelectBox("instance")._options._optionManager._options.value > 0 ? addCategory.dxSelectBox("instance")._options._optionManager._options.value : 1;
+                addStockValue = addStock.dxNumberBox("instance")._options._optionManager._options.value;
+                addSellPriceValue = addSellPrice.dxNumberBox("instance")._options._optionManager._options.value;                 
+                    $.ajax
+                    ({
+                        type: "POST",
+                        url: `${localUrl}/AddProduct?itemId=${addProductIdValue}&itemName=${addProductNameValue}&departmentId=${addDepartmentValue}&categoryId=${addCategoryValue}&stock=${addStockValue}&sellPrice=${addSellPriceValue}&storeId=${addStoreValue}`,
+                        success: function(resultData) {
+                            dataGrid.dxDataGrid("instance").refresh();
+                            DevExpress.ui.notify('Process Completed');
+                        }
+                    });
+                
+                dataGrid.dxDataGrid("instance").refresh();
+                jQuery('.addProductPanel').removeClass('active');
+            
+            addProductId.dxNumberBox("instance")._options._optionManager._options.value = 0;
+            addProductName.dxTextBox("instance")._options._optionManager._options.text = '';
+            addDepartment.dxSelectBox("instance")._options._optionManager._options.value = 0;
+            addCategory.dxSelectBox("instance")._options._optionManager._options.value = 0;
+            addStock.dxNumberBox("instance")._options._optionManager._options.value = 0;
+            addSellPrice.dxNumberBox("instance")._options._optionManager._options.value = 0;
+        }
+        else
+        {
+             DevExpress.ui.notify("Please select store", "error", 1000);
+        }
+    },
+  });
+
+var addNewProductButton =  $('#add-new-success-contained').dxButton({
+    hint: 'Add Product',
+    icon: 'check',
+    type: 'contained',
+    text: 'Create New',
+    onClick(e) {
+        if (addStore.dxSelectBox("instance")._options._optionManager._options.value != 0) 
+        {
+                addProductIdValue =0;       
+                addProductNameValue = addProductName.dxTextBox("instance")._options._optionManager._options.text;
+                addStoreValue = addStore.dxSelectBox("instance")._options._optionManager._options.value;
+                addDepartmentValue = addDepartment.dxSelectBox("instance")._options._optionManager._options.value > 0 ? addDepartment.dxSelectBox("instance")._options._optionManager._options.value : 1;
+                addCategoryValue = addCategory.dxSelectBox("instance")._options._optionManager._options.value > 0 ? addCategory.dxSelectBox("instance")._options._optionManager._options.value : 1;
+                addStockValue = addStock.dxNumberBox("instance")._options._optionManager._options.value;
+                addSellPriceValue = addSellPrice.dxNumberBox("instance")._options._optionManager._options.value;  
+                    $.ajax
+                    ({
+                        type: "POST",
+                        url: `${localUrl}/AddProduct?itemId=${addProductIdValue}&itemName=${addProductNameValue}&departmentId=${addDepartmentValue}&categoryId=${addCategoryValue}&stock=${addStockValue}&sellPrice=${addSellPriceValue}&storeId=${addStoreValue}`,
+                        success: function(resultData) {
+                            dataGrid.dxDataGrid("instance").refresh();
+                            DevExpress.ui.notify('Process Completed');
+                        }
+                    });
+                
+                dataGrid.dxDataGrid("instance").refresh();
+                jQuery('.addProductPanel').removeClass('active');
+            addProductId.dxNumberBox("instance")._options._optionManager._options.value = 0;   
+            addProductName.dxTextBox("instance")._options._optionManager._options.text = '';
+            addDepartment.dxSelectBox("instance")._options._optionManager._options.value = 0;
+            addCategory.dxSelectBox("instance")._options._optionManager._options.value = 0;
+            addStock.dxNumberBox("instance")._options._optionManager._options.value = 0;
+            addSellPrice.dxNumberBox("instance")._options._optionManager._options.value = 0;
+        }
+        else
+        {
+            DevExpress.ui.notify('Please select store');
+        }
+
+           
+    },
+  });
+
+var buyButton =  $('#success-contained').dxButton({
+    stylingMode: 'contained',
+    text: 'Done',
+    type: 'success',
+    width: 120,
+    onClick() {
+        var productIdValue = productId.dxTextBox("instance")._options._optionManager._options.text
+        var productNameValue = productName.dxTextBox("instance")._options._optionManager._options.text
+        var discountValue = discount.dxNumberBox("instance")._options._optionManager._options.value 
+        var buyPriceValue = buyPrice.dxNumberBox("instance")._options._optionManager._options.value 
+        var isRepairValue = isRepair.dxSwitch("instance")._options._optionManager._options.value 
+       $.ajax({
+              type: "POST",
+              url: `${localUrl}/ProductTradeIn?itemId=${productIdValue}&itemName=${productNameValue}&tradeIn=${isRepairValue}&discount=${discountValue}&buyPrice=${buyPriceValue}&storeId=${personnelStoreId}`,
+              success: function(resultData) {DevExpress.ui.notify('Trade in successful');}
+       });                            
+        dataGrid.dxDataGrid("instance").refresh();
+        
+       
+      
+    },
+  });
+
+// Speed Dial Action
+
+document.getElementById("closeAddProductButton").onclick = function() {
+        
+        jQuery('.addProductPanel').removeClass('active');
+        addProductId.dxNumberBox("instance")._options._optionManager._options.value = 0;
+        addProductId.dxNumberBox("instance").repaint();   
+        addProductName.dxTextBox("instance")._options._optionManager._options.text = '';
+        addProductName.dxTextBox("instance").repaint();
+        addDepartment.dxSelectBox("instance")._options._optionManager._options.text =  '';
+        addDepartment.dxSelectBox("instance").repaint();
+        addCategory.dxSelectBox("instance")._options._optionManager._options.text = '';
+        addCategory.dxSelectBox("instance").repaint();
+        addStock.dxNumberBox("instance")._options._optionManager._options.value = 0;
+        addStock.dxNumberBox("instance").repaint();
+        addSellPrice.dxNumberBox("instance")._options._optionManager._options.value = 0;
+        addSellPrice.dxNumberBox("instance").repaint();  
+
+};
+
+  const addSDA = $('#action-add').dxSpeedDialAction({
+    label: 'Add Product',
+    icon: 'add',
+    index: 1,
+    onClick() {
+        if (personnelPermission != 'Employee' && personnelPermission != 'Manager') {
+            addProductId.dxNumberBox("instance")._options._optionManager._options.value = 0;
+            addProductId.dxNumberBox("instance").repaint();
+            addProductName.dxTextBox("instance")._options._optionManager._options.text = '';
+            addProductName.dxTextBox("instance").repaint();
+            addStore.dxSelectBox("instance")._options._optionManager._options.text = '';
+            addStore.dxSelectBox("instance").repaint();
+            addDepartment.dxSelectBox("instance")._options._optionManager._options.text = '';
+            addDepartment.dxSelectBox("instance").repaint();
+            addCategory.dxSelectBox("instance")._options._optionManager._options.text = '';
+            addCategory.dxSelectBox("instance").repaint();
+            addStock.dxNumberBox("instance")._options._optionManager._options.value = 0;
+            addStock.dxNumberBox("instance").repaint();
+            addSellPrice.dxNumberBox("instance")._options._optionManager._options.value = 0;
+            addSellPrice.dxNumberBox("instance").repaint();
+            jQuery('.addProductPanel').addClass('active');
+        }
+        else {
+            DevExpress.ui.notify('You have not permission to access');
+        }
+    },
+  }).dxSpeedDialAction('instance');
+
+  const deleteSDA = $('#action-remove').dxSpeedDialAction({
+    icon: 'trash',
+    label: 'Delete Product',
+    index: 2,
+    visible: false,
+    onClick(e) {
+        if (personnelPermission != 'Employee' && personnelPermission != 'Manager') {
+        var deleteProductValue = selectedValue = dataGrid.dxDataGrid("instance")._options._optionManager._options.selectedRowKeys[0].itemId;
+        var deleteStoreValue = selectedValue = dataGrid.dxDataGrid("instance")._options._optionManager._options.selectedRowKeys[0].storeId;  
+            $.ajax
+                ({
+                    type: "POST",
+                    url: `${localUrl}/DeleteProduct?itemId=${deleteProductValue}&storeId=${deleteStoreValue}`,
+                    success: function(resultData) {
+                        dataGrid.dxDataGrid("instance").refresh();
+                        DevExpress.ui.notify('Process Completed');
+                    }
+                });
+
+            dataGrid.dxDataGrid("instance").refresh();
+            jQuery('.addProductPanel').removeClass('active');
+        }
+        else {
+            DevExpress.ui.notify('You have not permission to access');
+        }
+    },
+  }).dxSpeedDialAction('instance');
+
+  const editSDA = $('#action-edit').dxSpeedDialAction({
+    label: 'Edit Product',
+    icon: 'edit',
+    index: 3,
+    visible: false,
+    onClick(e) {
+        if (personnelPermission != 'Employee' && personnelPermission != 'Manager') {
+        selectedValue = dataGrid.dxDataGrid("instance")._options._optionManager._options.selectedRowKeys[0].itemId;
+        selectedStoreValue = dataGrid.dxDataGrid("instance")._options._optionManager._options.selectedRowKeys[0].storeId;
+            var selectedProduct = $.ajax
+                ({
+                    type: 'GET',
+                    url: `${localUrl}/GetInventoryList?itemId=${selectedValue}`,
+                    data: { key: 'itemId' },
+                    async: false,
+                    success: function(result) { }
+                });            
+            addProductId.dxNumberBox("instance")._options._optionManager._options.value = selectedValue;
+            addProductId.dxNumberBox("instance").repaint();
+            addProductName.dxTextBox("instance")._options._optionManager._options.text = selectedProduct.responseJSON[0].itemName;
+            addProductName.dxTextBox("instance").repaint();
+            addStore.dxSelectBox("instance")._options._optionManager._options.text = selectedProduct.responseJSON[0].storeName;
+            addStore.dxSelectBox("instance")._options._optionManager._options.value = selectedProduct.responseJSON[0].storeId;
+            addStore.dxSelectBox("instance").repaint();
+            addDepartment.dxSelectBox("instance")._options._optionManager._options.text = selectedProduct.responseJSON[0].department;
+            addDepartment.dxSelectBox("instance")._options._optionManager._options.value = selectedProduct.responseJSON[0].departmentId;
+            addDepartment.dxSelectBox("instance").repaint();
+            addCategory.dxSelectBox("instance")._options._optionManager._options.text = selectedProduct.responseJSON[0].category;
+            addCategory.dxSelectBox("instance")._options._optionManager._options.value = selectedProduct.responseJSON[0].categoryId;
+            addCategory.dxSelectBox("instance").repaint();
+            addStock.dxNumberBox("instance")._options._optionManager._options.value = selectedProduct.responseJSON[0].inStock;
+            addStock.dxNumberBox("instance").repaint();
+            addSellPrice.dxNumberBox("instance")._options._optionManager._options.value = selectedProduct.responseJSON[0].sellPrice;
+            addSellPrice.dxNumberBox("instance").repaint();
+            jQuery('.addProductPanel').addClass('active');
+        }
+        else {
+            DevExpress.ui.notify('You have not permission to access ');
+        }
+
+        
+    },
+  }).dxSpeedDialAction('instance');
+
+  
+
+//Datasource
+var categoryLookup =  
+	$.ajax
+				  ({
+							type: 'GET',
+							url:`${localUrl}/SettingLookupCategory`, 
+							data: {key: 'id'},
+							async: false,
+							onBeforeSend(method, ajaxOptions) {
+							  ajaxOptions.xhrFields = { withCredentials: true };
+							},
+							success: function(result){}
+				  });
+
+var permissionLookup =  
+	$.ajax
+				  ({
+							type: 'GET',
+							url:`${localUrl}/DefinitionLookupPermission`, 
+							data: {key: 'id'},
+							async: false,
+							onBeforeSend(method, ajaxOptions) {
+							  ajaxOptions.xhrFields = { withCredentials: true };
+							},
+							success: function(result){}
+				  });
+
+var storeLookup =  
+	$.ajax
+				  ({
+							type: 'GET',
+							url:`${localUrl}/DefinitionLookupStore`, 
+							data: {key: 'id'},
+							async: false,
+							onBeforeSend(method, ajaxOptions) {
+							  ajaxOptions.xhrFields = { withCredentials: true };
+							},
+							success: function(result){}
+				  });
+				  
+var storeGroupLookUp =  
+	$.ajax
+				  ({
+							type: 'GET',
+							url:`${localUrl}/DefinitionLookupStoreGroup`, 
+							data: {key: 'id'},
+							async: false,
+							onBeforeSend(method, ajaxOptions) {
+							  ajaxOptions.xhrFields = { withCredentials: true };
+							},
+							success: function(result){}
+				  });
+				  
+				  
+var personnelNameLookUp =  
+	$.ajax
+				  ({
+							type: 'GET',
+							url:`${localUrl}/ReportLookupPersonnel`, 
+							data: {key: 'personnelCode'},
+							async: false,
+							onBeforeSend(method, ajaxOptions) {
+							  ajaxOptions.xhrFields = { withCredentials: true };
+							},
+							success: function(result){}
+				  });
+
+var departmentDataSource =  
+    $.ajax
+                  ({
+                            type: 'GET',
+                            url:`${localUrl}/GetDepartmentDatasource`, 
+                            data: {key: 'id'},
+                            async: false,
+                            success: function(result){}
+                  });
+
+var categoryDataSource = 
+    $.ajax
+                  ({
+                            type: 'GET',
+                            url:`${localUrl}/GetCategoryDatasource`, 
+                            data: {key: 'id'},
+                            async: false,
+                            success: function(result){}
+                  });
+
+var storeDataSource = 
+    $.ajax
+                  ({
+                            type: 'GET',
+                            url:`${localUrl}/GetStoreDatasource`, 
+                            data: {key: 'id'},
+                            async: false,
+                            success: function(result){}
+                  });
+
+
+
+//Admin Menu Main Categories
+ var adminReport = $('#icon-report').dxButton({
+  icon: 'fa fa-bar-chart fa-rotate-270',
+  text: 'Reports',
+  onClick() {    
+   jQuery('.report-sub-categories').addClass('active');
+   jQuery('.setting-sub-categories').removeClass('active');
+   jQuery('.definition-sub-categories').removeClass('active');
+   jQuery('.demo-container-definition-personnel').removeClass('active');
+   jQuery('.demo-container-definition-document').removeClass('active');
+   jQuery('.demo-container-definition-category').removeClass('active');
+   jQuery('.demo-container-definition-store').removeClass('active');
+   jQuery('.demo-container-definition-product').removeClass('active');
+   jQuery('.dx-fa-button.dx-fa-button-main.dx-fa-button-with-label .dx-overlay-content').removeClass('active');
+   jQuery('.demo-container-definition-accessibility').removeClass('active');
+   jQuery('.demo-container-setting-price').removeClass('active');
+   jQuery('.demo-container-setting-weekly').removeClass('active');
+   jQuery('.demo-container-setting-promotion').removeClass('active');
+   jQuery('.demo-container-setting-discount').removeClass('active');
+   jQuery('.demo-container-setting-accessibility').removeClass('active');
+   personnelInformation =  
+	$.ajax
+				  ({
+							type: 'GET',
+							url:`${localUrl}/PersonnelInformation`, 
+							data: {key: cashierIdValue},
+							async: false,
+							onBeforeSend(method, ajaxOptions) {
+							  ajaxOptions.xhrFields = { withCredentials: true };
+							},
+							success: function(result){
+								personnelStoreId = result[0].storeId
+							}
+				  });
+  },
+});
+
+ var definitionSettings = $('#icon-definition').dxButton({
+  icon: 'fa fa-id-card',
+  text: 'Definitions',
+  onClick() {
+   jQuery('.definition-sub-categories').addClass('active');
+   jQuery('.report-sub-categories').removeClass('active');
+   jQuery('.setting-sub-categories').removeClass('active');
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active');
+   jQuery('.demo-container-setting-price').removeClass('active');
+   jQuery('.demo-container-setting-weekly').removeClass('active');
+   jQuery('.demo-container-setting-promotion').removeClass('active');
+   jQuery('.demo-container-setting-discount').removeClass('active');
+   jQuery('.demo-container-setting-accessibility').removeClass('active');
+  },
+});
+
+ var adminSettings = $('#icon-settings').dxButton({
+  icon: 'fa fa-cogs',
+  text: 'Settings',
+  onClick() {      
+	   $.ajax
+				({
+					type: "POST",
+					url: `${localUrl}/AdminPermission?cashierId=${cashierIdValue}`,
+					success: function(resultData) {
+						if(resultData == true)
+						{                            
+								   jQuery('.setting-sub-categories').addClass('active');
+								   jQuery('.report-sub-categories').removeClass('active');
+								   jQuery('.demo-container-report-store').removeClass('active');
+								   jQuery('.demo-container-report-personnel').removeClass('active');
+								   jQuery('.demo-container-report-invoice').removeClass('active');
+								   jQuery('.demo-container-report-customer').removeClass('active');
+								   jQuery('.demo-container-report-stock').removeClass('active');
+								   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+								   jQuery('.definition-sub-categories').removeClass('active');
+								   jQuery('.demo-container-definition-personnel').removeClass('active');
+								   jQuery('.demo-container-definition-document').removeClass('active');
+								   jQuery('.demo-container-definition-category').removeClass('active');
+								   jQuery('.demo-container-definition-store').removeClass('active');
+								   jQuery('.demo-container-definition-product').removeClass('active');
+								   jQuery('.dx-fa-button.dx-fa-button-main.dx-fa-button-with-label .dx-overlay-content').removeClass('active');
+								   jQuery('.demo-container-definition-accessibility').removeClass('active');
+								   jQuery('.demo-container-report-product').removeClass('active');
+								   jQuery('.demo-container-report-undercount').removeClass('active');
+								   jQuery('.demo-container-report-productRequest').removeClass('active');
+								   jQuery('.demo-container-report-accessibility').removeClass('active');
+						}
+						else {                            
+						DevExpress.ui.notify('You do not have permission to see this report');
+						}
+					}
+				});
+  },
+});
+
+//Report Menu Sub Categories
+  var reportStore = $('#icon-report-store').dxButton({
+  icon: 'fas fa-home',
+  text: 'Store',
+  onClick() {     
+      if (permission.responseJSON[0].store) {		
+		   jQuery('.demo-container-report-store').addClass('active');
+		   jQuery('.demo-container-report-personnel').removeClass('active');
+		   jQuery('.demo-container-report-invoice').removeClass('active');
+		   jQuery('.demo-container-report-customer').removeClass('active');
+		   jQuery('.demo-container-report-stock').removeClass('active');
+		   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+		   jQuery('.demo-container-report-product').removeClass('active');
+		   jQuery('.demo-container-report-undercount').removeClass('active');
+		   jQuery('.demo-container-report-productRequest').removeClass('active');
+		   jQuery('.demo-container-report-accessibility').removeClass('active');
+		   storeReport.dxDataGrid("instance").refresh(); 
+
+      }
+      else {
+		   jQuery('.demo-container-report-store').removeClass('active');
+		   jQuery('.demo-container-report-personnel').removeClass('active');
+		   jQuery('.demo-container-report-invoice').removeClass('active');
+		   jQuery('.demo-container-report-customer').removeClass('active');
+		   jQuery('.demo-container-report-stock').removeClass('active');
+		   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+		   jQuery('.demo-container-report-product').removeClass('active');
+		   jQuery('.demo-container-report-undercount').removeClass('active');
+		   jQuery('.demo-container-report-productRequest').removeClass('active');
+		   jQuery('.demo-container-report-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this report');	
+	  }
+            	
+  },
+});
+  
+  var reportPersonnel = $('#icon-report-personnel').dxButton({
+  icon: 'fas fa-users',
+  text: 'Cashier',
+  onClick() {
+      if (permission.responseJSON[0].cashier) {
+		   jQuery('.demo-container-report-store').removeClass('active');
+		   jQuery('.demo-container-report-personnel').addClass('active');
+		   jQuery('.demo-container-report-invoice').removeClass('active');
+		   jQuery('.demo-container-report-customer').removeClass('active');
+		   jQuery('.demo-container-report-stock').removeClass('active');
+		   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+		   jQuery('.demo-container-report-product').removeClass('active');
+		   jQuery('.demo-container-report-undercount').removeClass('active');
+		   jQuery('.demo-container-report-productRequest').removeClass('active');
+		   jQuery('.demo-container-report-accessibility').removeClass('active');
+		   personnelReport.dxDataGrid("instance").refresh();  
+	   }
+      else {
+		   jQuery('.demo-container-report-store').removeClass('active');
+		   jQuery('.demo-container-report-personnel').removeClass('active');
+		   jQuery('.demo-container-report-invoice').removeClass('active');
+		   jQuery('.demo-container-report-customer').removeClass('active');
+		   jQuery('.demo-container-report-stock').removeClass('active');
+		   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+		   jQuery('.demo-container-report-product').removeClass('active');
+		   jQuery('.demo-container-report-undercount').removeClass('active');
+		   jQuery('.demo-container-report-productRequest').removeClass('active');
+		   jQuery('.demo-container-report-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this report');	
+	  }
+  },
+});
+   
+  var reportInvoice = $('#icon-report-invoice').dxButton({
+  icon: 'fa fa-tasks',
+  text: 'Invoice',
+  onClick() {
+      if (permission.responseJSON[0].invoice) {
+		   invoiceReport.dxDataGrid("instance").refresh(); 
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').addClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active'); 
+	}
+      else {
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this report');	
+	  }
+  },
+});
+   
+  var reportCustomer = $('#icon-report-customer').dxButton({
+  icon: 'fa fa-user-circle',
+  text: 'Customer',
+  onClick() {
+      if (permission.responseJSON[0].customer) {
+		   customerReport.dxDataGrid("instance").refresh(); 
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').addClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active'); 
+	}
+      else {
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this report');	
+	  }
+  },
+});
+   
+  var reportStock = $('#icon-report-stock').dxButton({
+  icon: 'fa fa-braille',
+  text: 'Stock',
+  onClick() {
+      if (permission.responseJSON[0].stock) {
+		   stockReport.dxDataGrid("instance").refresh(); 
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').addClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active');
+    }
+      else {
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this report');	
+	  }
+  },
+});
+   
+  var reportProduct = $('#icon-report-product').dxButton({
+  icon: 'fa fa-line-chart',
+  text: 'Sales Analysis ',
+  onClick() {
+      if (permission.responseJSON[0].salesAnalysis) {
+		   productReport.dxDataGrid("instance").refresh(); 
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-product').addClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active');
+    }
+      else {
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this report');	
+	  }
+  },
+});
+   
+  var reportWeeklyOrder = $('#icon-report-weeklyOrder').dxButton({
+  icon: 'fa fa-pie-chart',
+  text: 'Weekly Order',
+  onClick() {
+      if (permission.responseJSON[0].inventoryOrder) {
+		   weeklyOrderReport.dxDataGrid("instance").refresh(); 
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-weeklyOrder').addClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active');
+    }
+      else {
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this report');	
+	  }
+  },
+});
+   
+  var reportUndercount = $('#icon-report-undercount').dxButton({
+  icon: 'fa fa-minus-square',
+  text: 'Undercount',
+  onClick() {
+      if (permission.responseJSON[0].undercount) {
+		   undercountReport.dxDataGrid("instance").refresh(); 
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-undercount').addClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active');
+    }
+      else {
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this report');	
+	  }
+  },
+});
+   
+  var reportProductRequest = $('#icon-report-productRequest').dxButton({
+  icon: 'fa fa-cart-plus',
+  text: 'Product Request',
+  onClick() {
+      if (permission.responseJSON[0].productRequest) {
+		   productRequestReport.dxDataGrid("instance").refresh(); 
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').addClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active');
+    }
+      else {
+   jQuery('.demo-container-report-store').removeClass('active');
+   jQuery('.demo-container-report-personnel').removeClass('active');
+   jQuery('.demo-container-report-invoice').removeClass('active');
+   jQuery('.demo-container-report-customer').removeClass('active');
+   jQuery('.demo-container-report-stock').removeClass('active');
+   jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+   jQuery('.demo-container-report-product').removeClass('active');
+   jQuery('.demo-container-report-undercount').removeClass('active');
+   jQuery('.demo-container-report-productRequest').removeClass('active');
+   jQuery('.demo-container-report-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this report');	
+	  }
+  },
+});
+   
+  var reportAccessibility = $('#icon-report-accessibility').dxButton({
+  icon: 'fa fa-universal-access',
+  text: 'Accessibility',
+  onClick() {
+      if ( cashierIdValue == 'IS765' || cashierIdValue == 'MN94') {
+          jQuery('.demo-container-report-store').removeClass('active');
+          jQuery('.demo-container-report-personnel').removeClass('active');
+          jQuery('.demo-container-report-invoice').removeClass('active');
+          jQuery('.demo-container-report-customer').removeClass('active');
+          jQuery('.demo-container-report-stock').removeClass('active');
+          jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+          jQuery('.demo-container-report-product').removeClass('active');
+          jQuery('.demo-container-report-undercount').removeClass('active');
+          jQuery('.demo-container-report-productRequest').removeClass('active');
+          jQuery('.demo-container-report-accessibility').addClass('active');
+      }
+      else {
+          jQuery('.demo-container-report-store').removeClass('active');
+          jQuery('.demo-container-report-personnel').removeClass('active');
+          jQuery('.demo-container-report-invoice').removeClass('active');
+          jQuery('.demo-container-report-customer').removeClass('active');
+          jQuery('.demo-container-report-stock').removeClass('active');
+          jQuery('.demo-container-report-weeklyOrder').removeClass('active');
+          jQuery('.demo-container-report-product').removeClass('active');
+          jQuery('.demo-container-report-undercount').removeClass('active');
+          jQuery('.demo-container-report-productRequest').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this accessibility');
+
+	  }
+  },
+});
+   
+
+//Report Menu Sub Categories - DataGrids
+  var storeReport = $('#storeReport').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({
+		key: 'storeId',
+		loadUrl: `${localUrl}/ReportStoreList`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?storeId=" + personnelStoreId;
+		},
+	}),      
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	headerFilter: {
+	  visible: true,
+	},
+	columns: [
+		{
+			dataField: 'storeId',
+			caption: 'Store',
+			dataType: 'number',
+			groupIndex: 0,
+		},
+		{
+			dataField: 'storeName',
+			caption: 'Store',
+			dataType: 'string',
+		},
+		{
+			dataField: 'sellPrice',
+			caption: 'Sell Price',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+		{
+			dataField: 'subTotal',
+			caption: 'Sub Total',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+		{
+			dataField: 'taxTotal',
+			caption: 'Tax Total',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+		{
+			dataField: 'grandTotal',
+			caption: 'Grand Total',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+		{
+			dataField: 'getDate',
+			caption: 'Date',
+			dataType: "date", 
+		},  
+	],
+	summary: {
+	  totalItems: [
+	  {
+		column: 'sellPrice',
+		summaryType: 'sum',
+		valueFormat: 'currency',
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+	  },
+	  {
+		column: 'subTotal',
+		summaryType: 'sum',
+		valueFormat: 'currency',
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+	  },
+	  {
+		column: 'taxTotal',
+		summaryType: 'sum',
+		valueFormat: 'currency',
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+	  },
+	  {
+		column: 'grandTotal',
+		summaryType: 'sum',
+		valueFormat: 'currency',
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+	  },
+	  ],
+	},  
+  });
+
+  var personnelReport = $('#personnelReport').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({
+		key: 'personnelCode',
+		loadUrl: `${localUrl}/ReportPersonnelList`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?storeId=" + personnelStoreId;
+		},
+	}),     
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	headerFilter: {
+	visible: true,
+	},
+	columns: [
+		{
+			dataField: 'personnelCode',
+			caption: 'Cashier Code',
+			dataType: 'string',
+			groupIndex: 0,
+		},
+		{
+			dataField: 'personnelName',
+			caption: 'Cashier Name',
+			dataType: 'string',
+		},
+		{
+			dataField: 'clockIn',
+			caption: 'Clock In',
+			dataType: 'string',
+		},
+		{
+			dataField: 'clockOut',
+			caption: 'Clock Out',
+			dataType: 'string',
+		},
+		{
+			dataField: 'workingHour',
+			caption: 'Working Hour',
+			dataType: 'string',
+		},
+		{
+			dataField: 'sellPrice',
+			caption: 'Sell Price',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+		{
+			dataField: 'subTotal',
+			caption: 'Sub Total',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+		{
+			dataField: 'taxTotal',
+			caption: 'Tax Total',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+		{
+			dataField: 'grandTotal',
+			caption: 'Grand Total',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+		{
+			dataField: 'getDate',
+			caption: 'Date',
+			dataType: "date", 
+		},  
+	],
+	summary: {
+	  totalItems: [
+	  {
+		column: 'sellPrice',
+		summaryType: 'sum',
+		valueFormat: 'currency',
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+	  },
+	  {
+		column: 'subTotal',
+		summaryType: 'sum',
+		valueFormat: 'currency',
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+	  },
+	  {
+		column: 'taxTotal',
+		summaryType: 'sum',
+		valueFormat: 'currency',
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+	  },
+	  {
+		column: 'grandTotal',
+		summaryType: 'sum',
+		valueFormat: 'currency',
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+	  },
+	  ],
+	},  
+  });
+
+  var invoiceReport = $('#invoiceReport').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({
+		key: 'invoiceId',
+		loadUrl: `${localUrl}/ReportInvoiceList`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?storeId=" + personnelStoreId;
+		},
+	}),      
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	headerFilter: {
+	  visible: true,
+	},
+	columns: [
+		{
+			dataField: 'invoiceId',
+			caption: 'Invoice',
+			dataType: 'numeric',
+		},
+		{
+			dataField: 'customerPhone',
+			caption: 'Customer Phone',
+			dataType: 'string',
+		},
+		{
+			dataField: 'sellPrice',
+			caption: 'Sell Price',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+		{
+			dataField: 'subTotal',
+			caption: 'Sub Total',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+		{
+			dataField: 'taxTotal',
+			caption: 'Tax Total',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+		{
+			dataField: 'grandTotal',
+			caption: 'Grand Total',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+		{
+			dataField: 'getDate',
+			caption: 'Date',
+			dataType: "date", 
+		},  
+		{
+            type: 'buttons',
+            buttons: [
+            {
+                icon: 'file',
+                hint: 'Invoice Output',
+                onClick(e) { 					
+						    invoiceIdOutput = e.row.data.invoiceId;
+								invoiceDetailReport.dxDataGrid("instance").refresh();  
+								jQuery('.demo-container-invoice-detail').addClass('active');
+								jQuery('.demo-container-report-invoice').removeClass('active');
+                           },
+                },
+            ],
+        },
+	],
+	summary: {
+	  totalItems: [
+	  {
+		column: 'sellPrice',
+		summaryType: 'sum',
+		valueFormat: 'currency',
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+	  },
+	  {
+		column: 'subTotal',
+		summaryType: 'sum',
+		valueFormat: 'currency',
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+	  },
+	  {
+		column: 'taxTotal',
+		summaryType: 'sum',
+		valueFormat: 'currency',
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+	  },
+	  {
+		column: 'grandTotal',
+		summaryType: 'sum',
+		valueFormat: 'currency',
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+	  },
+	  ],
+	},  
+  });
+
+  var invoiceDetailReport = $('#InvoiceDetail').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({
+		key: 'invoiceId',
+		loadUrl: `${localUrl}/ReportInvoiceDetailList`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?invoiceId=" + invoiceIdOutput;
+		},
+	}), columnChooser: {
+      enabled: true,
+    },
+	repaintChangesOnly: true,	
+    onContentReady: function (e) {  
+          if ($("#closeButton").length == 0) {  
+                                  var $customButton =  $("<a id='closeButton' i />")   
+                                    .text("Close")
+                                  .addClass("btn btn-primary" )  
+                                .click(function(){                                
+								jQuery('.demo-container-invoice-detail').removeClass('active');
+								jQuery('.demo-container-report-invoice').addClass('active');
+                                }); 
+                                  var toolbar = e.element  
+                                    .find('.dx-toolbar-after');  
+                                 $(toolbar.get(0))  
+                                    .prepend($customButton);  
+          }  
+    },    
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	headerFilter: {
+	  visible: true,
+	},
+	columns: [
+		{
+			dataField: 'invoiceId',
+			caption: 'Invoice',
+			dataType: 'numeric',
+		},
+        {
+		caption: 'Product Information',
+		columns: [				
+		{
+			dataField: 'productId',
+			caption: 'Product Id',
+			dataType: 'numeric',
+		},
+		{
+			dataField: 'productName',
+			caption: 'Product Name',
+			dataType: 'string',
+		},
+		],
+		},
+		{
+			dataField: 'quantity',
+			caption: 'Quantity',
+			dataType: 'numeric',
+		},
+        {
+            caption: 'Personnel Information',
+			visible: false,
+            columns: [
+                {
+                    dataField: 'personnelName',
+                    caption: 'Name',
+                    dataType: 'string',
+					visible: false,
+                },
+                {
+                    dataField: 'storeName',
+                    caption: 'Store',
+                    dataType: 'string',
+					visible: false,
+                },
+            ]
+        },
+		{
+			dataField: 'paymentMethod',
+			caption: 'Payment Method',
+			dataType: 'string',
+			visible: false,
+		},
+		{
+			dataField: 'sellPrice',
+			caption: 'Sell Price',
+			dataType: 'currency', 
+			format: {
+				type: "fixedPoint",
+				precision: 2
+			},
+		},
+        {
+            caption: 'Price Details',
+            columns: [
+                {
+                    dataField: 'subTotal',
+                    caption: 'Sub Total',
+                    dataType: 'currency',
+                    format: {
+                        type: "fixedPoint",
+                        precision: 2
+                    },
+                },
+                {
+                    dataField: 'taxTotal',
+                    caption: 'Tax Total',
+                    dataType: 'currency',
+                    format: {
+                        type: "fixedPoint",
+                        precision: 2
+                    },
+                },
+                {
+                    dataField: 'grandTotal',
+                    caption: 'Grand Total',
+                    dataType: 'currency',
+                    format: {
+                        type: "fixedPoint",
+                        precision: 2
+                    },
+                },
+            ],
+        },
+		{
+			dataField: 'customerPhone',
+			caption: 'Customer Phone',
+			dataType: 'numeric',
+			visible: false,
+		},
+		{
+			dataField: 'getDate',
+			caption: 'Date',
+			dataType: "date", 
+		},
+	],
+  });
+
+  var customerReport = $('#customerReport').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({
+		key: 'id',
+		loadUrl: `${localUrl}/ReportCustomerList`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };
+		},
+	}),     
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	headerFilter: {
+	  visible: true,
+	},
+	columns: [
+		{
+			dataField: 'id',
+			caption: 'Id',
+			dataType: 'numeric',
+		},
+		{
+			dataField: 'firstName',
+			caption: 'First Name',
+			dataType: 'string', 
+		},
+		{
+			dataField: 'lastName',
+			caption: 'Last Name',
+			dataType: 'string', 
+		},
+		{
+			dataField: 'email',
+			caption: 'Mail',
+			dataType: 'string', 
+		},
+		{
+			dataField: 'phoneNumber',
+			caption: 'Phone',
+			dataType: 'string', 
+		},
+		{
+			dataField: 'getDate',
+			caption: 'Date',
+			dataType: "date", 
+		},  
+	],
+	summary: {
+	  totalItems: [
+	  {
+		column: 'id',
+		summaryType: 'count',
+	  },
+	  ],
+	},  
+  });
+
+  var stockReport = $('#stockReport').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({
+		key: 'itemId',
+		loadUrl: `${localUrl}/ReportStockList`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?storeId=" + personnelStoreId;
+		},
+	}),     
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    },  
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	headerFilter: {
+	  visible: true,
+	},
+	columns: [
+		{
+			dataField: 'itemId',
+			caption: 'Product Id',
+			dataType: 'numeric',
+		},
+		{
+			dataField: 'itemName',
+			caption: 'Product Name',
+			dataType: 'string', 
+		},
+		{
+			dataField: 'stock',
+			caption: 'Pre-sale Stock',
+			dataType: 'numeric', 
+		},
+		{
+			dataField: 'quantity',
+			caption: 'Sold(quantity)',
+			dataType: 'numeric', 
+		},
+		{
+			dataField: 'currentStock',
+			caption: 'Current Stock',
+			dataType: 'numeric', 
+		},
+		{
+			dataField: 'sellPrice',
+			caption: 'Sell Price',
+			dataType: 'numeric', 
+		},
+		{
+			dataField: 'store',
+			caption: 'Store',
+			dataType: 'string', 
+		},
+		{
+			dataField: 'getDate',
+			caption: 'Date',
+			dataType: "date", 
+		},  
+		{
+			dataField: 'getDateHour',
+			caption: 'Date Hour',
+			dataType: "string", 
+		},  
+	], 
+  });
+
+  var productReport = $('#productReport').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({
+		key: 'itemId',
+		loadUrl: `${localUrl}/ReportProductList`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?storeId=" + personnelStoreId;
+		},
+	}),     
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	headerFilter: {
+	  visible: true,
+	},
+	columns: [
+		{
+			dataField: 'itemId',
+			caption: 'Product Id',
+			dataType: 'numeric',
+		},
+		{
+			dataField: 'itemName',
+			caption: 'Product Name',
+			dataType: 'string', 
+		},
+		{
+			dataField: 'quantity',
+			caption: 'Total Quantity',
+			dataType: 'numeric', 
+		}, 
+		{
+			dataField: 'dateRange',
+			caption: 'Date Range',
+			dataType: 'numeric', 
+		}, 
+	], 
+  });
+
+  var weeklyOrderReport = $('#weeklyOrderReport').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({
+		key: 'itemId',
+		loadUrl: `${localUrl}/ReportWeeklyOrderList`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?storeId=" + personnelStoreId;
+		},
+	}),    
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	headerFilter: {
+	  visible: true,
+	},
+	columns: [
+		{
+			dataField: 'itemId',
+			caption: 'Product Id',
+			dataType: 'numeric',
+		},
+		{
+			dataField: 'itemName',
+			caption: 'Product Name',
+			dataType: 'string', 
+		},
+		{
+			dataField: 'itemCount',
+			caption: 'Product Count',
+			dataType: 'numeric',
+		},
+		{
+			dataField: 'inStock',
+			caption: 'In Stock',
+			dataType: 'numeric',
+		},
+		{
+			dataField: 'itemOrder',
+			caption: 'Product Order',
+			dataType: 'numeric',
+		},
+		{
+			dataField: 'store',
+			caption: 'Store',
+			dataType: 'string', 
+			groupIndex: 0,
+		},
+		{
+			dataField: 'getDate',
+			caption: 'Date',
+			dataType: "date", 
+		},   
+	], 
+  });
+
+  var undercountReport = $('#undercountReport').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({
+		key: 'itemId',
+		loadUrl: `${localUrl}/ReportUndercountList`,
+		deleteUrl: `${localUrl}/DeleteUndercount`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };     
+			 if (ajaxOptions.data.key)  
+			ajaxOptions.url += "?key=" + ajaxOptions.data.key; 
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?storeId=" + personnelStoreId;
+		},
+	}),      
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	editing: {
+	  allowDeleting: true,
+	},
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	headerFilter: {
+	  visible: true,
+	},
+	columns: [
+		{
+			dataField: 'itemId',
+			caption: 'Product Id',
+			dataType: 'numeric',
+		},
+		{
+			dataField: 'itemName',
+			caption: 'Product Name',
+			dataType: 'string', 
+		},
+        {
+            dataField: 'undercount',
+            caption: 'Undercount',
+            dataType: 'numeric',
+        },
+		{
+			dataField: 'store',
+			caption: 'Store',
+			dataType: 'string', 
+			groupIndex: 0,
+		},
+		{
+			dataField: 'getDate',
+			caption: 'Date',
+			dataType: "date", 
+		},   
+	], 
+  });
+
+  var productRequestReport = $('#productRequestReport').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({
+		key: 'itemId',
+		loadUrl: `${localUrl}/ReportProductRequestList`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };     
+			 if (ajaxOptions.data.key)  
+			ajaxOptions.url += "?key=" + ajaxOptions.data.key; 
+            if (ajaxOptions.method == "GET")
+                ajaxOptions.url += "?storeId=" + personnelStoreId;
+		},
+	}),     
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	headerFilter: {
+	  visible: true,
+	},
+	columns: [
+		{
+			dataField: 'itemId',
+			caption: 'Product Id',
+			dataType: 'numeric',
+		},
+		{
+			dataField: 'itemName',
+			caption: 'Product Name',
+			dataType: 'string', 
+		},
+		{
+			dataField: 'store',
+			caption: 'Store',
+			dataType: 'string', 
+			groupIndex: 0,
+		},
+		{
+			dataField: 'personnelName',
+			caption: 'Personnel Name',
+			dataType: 'string', 
+		},
+		{
+			dataField: 'getDate',
+			caption: 'Date',
+			dataType: "date", 
+		},   
+	], 
+  });
+
+  var accessibilityReport = $('#accessibilityReport').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({                
+		key: 'personnelCode',
+		loadUrl: `${localUrl}/ReportAccessibilityList`,
+		insertUrl: `${localUrl}/AddReportAccesibility`,
+		deleteUrl: `${localUrl}/DeleteReportAccessibility`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };     
+			 if (ajaxOptions.data.key)  
+			ajaxOptions.url += "?key=" + ajaxOptions.data.key;            
+		},
+	}),    
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	editing: {
+	  allowAdding: true,
+	  allowDeleting: true,
+	},
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	columns: [    
+		{
+			dataField: 'personnelCode',
+			caption: 'Personnel Name',
+			dataType: 'string',
+			alignment: 'center',
+			lookup: {
+					  dataSource: personnelNameLookUp.responseJSON,
+					  displayExpr: 'personnelName',
+					  valueExpr: 'personnelCode',
+					},
+		},        
+		{
+			dataField: 'storeName',
+			caption: 'Store Name',
+			dataType: 'string',
+			alignment: 'center',
+			allowEditing:false,
+		},           
+		{
+			dataField: 'permission',
+			caption: 'Authority',
+			dataType: 'string',
+			alignment: 'center',
+			allowEditing:false,
+		},               
+		{
+			dataField: 'store',
+			caption: 'Store',
+			dataType: 'boolean',
+			alignment: 'center',
+		},              
+		{
+			dataField: 'cashier',
+			caption: 'Cashier',
+			dataType: 'boolean',
+			alignment: 'center',
+		},              
+		{
+			dataField: 'invoice',
+			caption: 'Invoice',
+			dataType: 'boolean',
+			alignment: 'center',
+		},              
+		{
+			dataField: 'customer',
+			caption: 'Customer',
+			dataType: 'boolean',
+			alignment: 'center',
+		},              
+		{
+			dataField: 'stock',
+			caption: 'Stock',
+			dataType: 'boolean',
+			alignment: 'center',
+		},              
+		{
+			dataField: 'salesAnalysis',
+			caption: 'Sales Analysis',
+			dataType: 'boolean',
+			alignment: 'center',
+		},              
+		{
+			dataField: 'inventoryOrder',
+			caption: 'Inventory Order',
+			dataType: 'boolean',
+			alignment: 'center',
+		},              
+		{
+			dataField: 'undercount',
+			caption: 'Undercount',
+			dataType: 'boolean',
+			alignment: 'center',
+		},            
+		{
+			dataField: 'productRequest',
+			caption: 'Product Request',
+			dataType: 'boolean',
+			alignment: 'center',
+		}, 
+	], 
+  });
+
+//Definition Menu Sub Categories
+  var definitionDocument = $('#icon-definition-document').dxButton({
+  icon: 'fa fa-qrcode ',
+  text: 'Document',
+  onClick() {    	  
+      if (definitionPermission.responseJSON[0].documentary) {
+          jQuery('.demo-container-definition-document').addClass('active');
+          jQuery('.demo-container-definition-category').removeClass('active');
+          jQuery('.demo-container-definition-personnel').removeClass('active');
+          jQuery('.demo-container-definition-store').removeClass('active');
+          jQuery('.demo-container-definition-product').removeClass('active');
+		  jQuery('.dx-fa-button.dx-fa-button-main.dx-fa-button-with-label .dx-overlay-content').removeClass('active');
+          jQuery('.demo-container-definition-accessibility').removeClass('active');
+      }
+      else {
+          jQuery('.demo-container-definition-category').removeClass('active');
+          jQuery('.demo-container-definition-personnel').removeClass('active');
+          jQuery('.demo-container-definition-store').removeClass('active');
+          jQuery('.demo-container-definition-product').removeClass('active');
+	      jQuery('.dx-fa-button.dx-fa-button-main.dx-fa-button-with-label .dx-overlay-content').removeClass('active');
+          jQuery('.demo-container-definition-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this definition');
+
+	  }
+  },
+});
+  
+  var definitionPersonnel = $('#icon-definition-personnel').dxButton({
+  icon: 'fas fa-street-view',
+  text: 'Cashier',
+  onClick() {      
+      if (definitionPermission.responseJSON[0].personnel) {
+          jQuery('.demo-container-definition-document').removeClass('active');
+          jQuery('.demo-container-definition-category').removeClass('active');
+          jQuery('.demo-container-definition-personnel').addClass('active');
+          jQuery('.demo-container-definition-store').removeClass('active');
+          jQuery('.demo-container-definition-product').removeClass('active');
+		  jQuery('.dx-fa-button.dx-fa-button-main.dx-fa-button-with-label .dx-overlay-content').removeClass('active');
+          jQuery('.demo-container-definition-accessibility').removeClass('active');
+      }
+      else {
+          jQuery('.demo-container-definition-document').removeClass('active');
+          jQuery('.demo-container-definition-category').removeClass('active');
+          jQuery('.demo-container-definition-store').removeClass('active');
+          jQuery('.demo-container-definition-product').removeClass('active');
+		  jQuery('.dx-fa-button.dx-fa-button-main.dx-fa-button-with-label .dx-overlay-content').removeClass('active');
+          jQuery('.demo-container-definition-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this definition');
+	  }
+  },
+});
+   
+  var definitionCategory = $('#icon-definition-category').dxButton({
+  icon: 'fa fa-bars',
+  text: 'Category',
+  onClick() {  
+	     if (definitionPermission.responseJSON[0].category) {
+		   jQuery('.demo-container-definition-personnel').removeClass('active');
+		   jQuery('.demo-container-definition-document').removeClass('active');
+		   jQuery('.demo-container-definition-category').addClass('active');
+		   jQuery('.demo-container-definition-store').removeClass('active');
+           jQuery('.demo-container-definition-product').removeClass('active');
+		   jQuery('.dx-fa-button.dx-fa-button-main.dx-fa-button-with-label .dx-overlay-content').removeClass('active');
+		   jQuery('.demo-container-definition-accessibility').removeClass('active');
+      }
+      else {
+          jQuery('.demo-container-definition-document').removeClass('active');
+          jQuery('.demo-container-definition-category').removeClass('active');
+          jQuery('.demo-container-definition-store').removeClass('active');
+          jQuery('.demo-container-definition-product').removeClass('active');
+          jQuery('.dx-fa-button.dx-fa-button-main.dx-fa-button-with-label .dx-overlay-content').removeClass('active');
+          jQuery('.demo-container-definition-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this definition');
+	  }
+  },
+});
+   
+  var definitionStore = $('#icon-definition-store').dxButton({
+  icon: 'fa fa-university',
+  text: 'Store',
+  onClick() {      
+      if (definitionPermission.responseJSON[0].category) {
+          jQuery('.demo-container-definition-personnel').removeClass('active');
+          jQuery('.demo-container-definition-document').removeClass('active');
+          jQuery('.demo-container-definition-category').removeClass('active');
+          jQuery('.demo-container-definition-store').addClass('active');
+          jQuery('.demo-container-definition-product').removeClass('active');
+          jQuery('.dx-fa-button.dx-fa-button-main.dx-fa-button-with-label .dx-overlay-content').removeClass('active');
+          jQuery('.demo-container-definition-accessibility').removeClass('active');
+      }
+      else {
+          jQuery('.demo-container-definition-personnel').removeClass('active');
+          jQuery('.demo-container-definition-document').removeClass('active');
+          jQuery('.demo-container-definition-category').removeClass('active');
+          jQuery('.demo-container-definition-product').removeClass('active');
+          jQuery('.dx-fa-button.dx-fa-button-main.dx-fa-button-with-label .dx-overlay-content').removeClass('active');
+          jQuery('.demo-container-definition-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this definition');
+	  }
+  },
+});
+   
+  var definitionProduct = $('#icon-definition-product').dxButton({
+  icon: 'fa fa-gamepad',
+  text: 'Product',
+  onClick() {      
+      if (definitionPermission.responseJSON[0].category) {
+          jQuery('.demo-container-definition-personnel').removeClass('active');
+          jQuery('.demo-container-definition-document').removeClass('active');
+          jQuery('.demo-container-definition-category').removeClass('active');
+          jQuery('.demo-container-definition-store').removeClass('active');
+          jQuery('.demo-container-definition-product').addClass('active');
+          jQuery('.dx-fa-button.dx-fa-button-main.dx-fa-button-with-label .dx-overlay-content').addClass('active');
+          jQuery('.demo-container-definition-accessibility').removeClass('active');
+      }
+      else {
+          jQuery('.demo-container-definition-personnel').removeClass('active');
+          jQuery('.demo-container-definition-document').removeClass('active');
+          jQuery('.demo-container-definition-category').removeClass('active');
+          jQuery('.demo-container-definition-store').removeClass('active');
+          jQuery('.demo-container-definition-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this definition');
+	  }
+  },
+});
+   
+  var definitionAccessibility = $('#icon-definition-accessibility').dxButton({
+  icon: 'fa fa-universal-access',
+  text: 'Accessibility',
+  onClick() {
+      if ( cashierIdValue == 'IS765' || cashierIdValue == 'MN94') {
+          jQuery('.demo-container-definition-personnel').removeClass('active');
+          jQuery('.demo-container-definition-document').removeClass('active');
+          jQuery('.demo-container-definition-category').removeClass('active');
+          jQuery('.demo-container-definition-store').removeClass('active');
+          jQuery('.demo-container-definition-product').removeClass('active');
+          jQuery('.dx-fa-button.dx-fa-button-main.dx-fa-button-with-label .dx-overlay-content').removeClass('active');
+          jQuery('.demo-container-definition-accessibility').addClass('active');
+      }
+      else {		  
+          jQuery('.demo-container-definition-personnel').removeClass('active');
+          jQuery('.demo-container-definition-document').removeClass('active');
+          jQuery('.demo-container-definition-category').removeClass('active');
+          jQuery('.demo-container-definition-store').removeClass('active');
+          jQuery('.demo-container-definition-product').removeClass('active');
+          jQuery('.dx-fa-button.dx-fa-button-main.dx-fa-button-with-label .dx-overlay-content').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this accessibility');
+	  }
+  },
+});
+
+//Definition Menu Sub Categories - DataGrids
+  var documentDefinition = $('#documentDefinition').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({                
+		key: 'id',
+		loadUrl: `${localUrl}/GetDepartment`,
+		insertUrl: `${localUrl}/AddDepartment`,
+		deleteUrl: `${localUrl}/DeleteDepartment`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };     
+			 if (ajaxOptions.data.key)  
+			ajaxOptions.url += "?key=" + ajaxOptions.data.key;            
+		},
+	}),     
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	editing: {
+	  allowAdding: true,
+	  allowDeleting: true,
+	},
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	columns: [
+		{
+			dataField: 'id',
+			caption: 'Department Id',
+			dataType: 'numeric',
+			alignment: 'center',
+			allowEditing: false,
+		}, 
+		{
+			dataField: 'description',
+			caption: 'Document',
+			dataType: 'string',
+			alignment: 'center',
+		}, 
+	], 
+  });
+  
+  var categoryDefinition = $('#categoryDefinition').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({                
+		key: 'id',
+		loadUrl: `${localUrl}/GetCategory`,
+		insertUrl: `${localUrl}/AddCategory`,
+		deleteUrl: `${localUrl}/DeleteCategory`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };     
+			 if (ajaxOptions.data.key)  
+			ajaxOptions.url += "?key=" + ajaxOptions.data.key;            
+		},
+	}),      
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	editing: {
+	  allowAdding: true,
+	  allowDeleting: true,
+	},
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	columns: [
+		{
+			dataField: 'id',
+			caption: 'Category Id',
+			dataType: 'numeric',
+			alignment: 'center',
+			allowEditing: false,
+		}, 
+		{
+			dataField: 'description',
+			caption: 'Category Name',
+			dataType: 'string',
+			alignment: 'center',
+		}, 
+	], 
+  });
+
+  var personnelDefinition = $('#personnelDefinition').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({                
+		key: 'personnelCode',
+		loadUrl: `${localUrl}/GetPersonnel`,
+		insertUrl: `${localUrl}/AddPersonnel`,
+		deleteUrl: `${localUrl}/DeletePersonnel`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };     
+			 if (ajaxOptions.data.key)  
+			ajaxOptions.url += "?key=" + ajaxOptions.data.key;            
+		},
+	}),     
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	editing: {
+	  allowAdding: true,
+	  allowDeleting: true,
+	},
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	columns: [
+		{
+			dataField: 'personnelCode',
+			caption: 'Code',
+			dataType: 'string',
+			alignment: 'center',
+		},         
+		{
+			dataField: 'personnelName',
+			caption: 'Name',
+			dataType: 'string',
+			alignment: 'center',
+		},        
+		{
+			dataField: 'storeName',
+			caption: 'Store Name',
+			dataType: 'string',
+			alignment: 'center',
+			lookup: {
+					  dataSource: storeLookup.responseJSON,
+					  displayExpr: 'description',
+					  valueExpr: 'description',
+					},
+		},           
+		{
+			dataField: 'permission',
+			caption: 'Authority',
+			dataType: 'string',
+			alignment: 'center',
+			lookup: {
+					  dataSource: permissionLookup.responseJSON,
+					  displayExpr: 'description',
+					  valueExpr: 'description',
+					},
+		},             
+		{
+			dataField: 'factorId',
+			caption: 'Application',
+			dataType: 'string',
+			alignment: 'center',
+            allowEditing: false,
+		},             
+		{
+			dataField: 'hireDate',
+			caption: 'Hire Date',
+			dataType: 'date',
+			alignment: 'center',
+		}, 
+	], 
+  });
+  
+  var storeDefinition = $('#storeDefinition').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({                
+		key: 'id',
+		loadUrl: `${localUrl}/GetStore`,
+		insertUrl: `${localUrl}/AddStore`,
+		deleteUrl: `${localUrl}/DeleteStore`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };      
+			 if (ajaxOptions.data.key)  
+			ajaxOptions.url += "?key=" + ajaxOptions.data.key;           
+		},
+	}),     
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	editing: {
+	  allowAdding: true,
+	  allowDeleting: true,
+	},
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	columns: [
+		{
+			dataField: 'storeGroupId',
+			caption: 'Store Group',
+			lookup: {
+					  dataSource: storeGroupLookUp.responseJSON,
+					  displayExpr: 'description',
+					  valueExpr: 'id',
+					},
+		},   
+		{
+			dataField: 'id',
+			caption: 'Store Id',
+			dataType: 'numeric',
+			alignment: 'center',
+			allowEditing: false,
+		}, 
+		{
+			dataField: 'description',
+			caption: 'Store Name',
+			dataType: 'string',
+			alignment: 'center',
+		}, 
+		{
+			dataField: 'taxRate',
+			caption: 'Store Tax Rate(%)',
+			dataType: 'numeric',
+			alignment: 'center',
+		}, 
+		{
+			dataField: 'website',
+			caption: 'Website',
+			dataType: 'string',
+			alignment: 'center',
+		}, 
+		{
+			dataField: 'phoneNumber',
+			caption: 'Phone',
+			dataType: 'string',
+			alignment: 'center',
+		}, 
+	], 
+  });
+  
+  var productDefinition = $('#productDefinition').dxDataGrid({
+   dataSource: DevExpress.data.AspNet.createStore({
+        key: ['itemId','storeId'],
+      loadUrl: `${localUrl}/GetInventoryList`,
+      onBeforeSend(method, ajaxOptions) {
+        ajaxOptions.xhrFields = { withCredentials: true };
+      },
+    }),       
+    scrolling: {
+      mode: 'virtual',
+    },
+    showBorders: true,
+    allowColumnResizing: true,
+    columnAutoWidth: true,
+    columnWidth: "auto",
+    filterRow: {
+        applyFilter: "auto",
+        applyFilterText: "Apply filter",
+        betweenEndText: "End",
+        betweenStartText: "Start",
+        operationDescriptions: {},
+        resetOperationText: "Reset",
+        showAllText: "",
+        showOperationChooser: true,
+        visible: true
+    },
+    selection: {
+        mode: 'single',
+    },
+    searchPanel: {
+      visible: true,
+      width: 240,
+      placeholder: 'Search...',
+    },
+    headerFilter: {
+      visible: true,
+    },
+    columns: [
+        {
+            dataField: 'itemId',
+            caption: 'Id',
+            allowEditing: false,
+            width: 200,
+        },
+        {
+            dataField: 'itemName',
+            caption: 'Inventory Name',
+            allowEditing: false,
+            width: 250,
+        },
+        {
+            dataField: 'department',
+            caption: 'Department',
+            dataType: 'string',
+        },
+        {
+            dataField: 'category',
+            caption: 'Category',
+        },
+        {
+            dataField: 'inStock',
+            caption: 'In Stock',
+        },
+        {
+            dataField: 'inRepair',
+            caption: 'In Repair',
+        },
+        {
+            dataField: 'storeName',
+            caption: 'Store',
+        },
+        {
+            dataField: 'ebayPrice',
+            caption: 'Ebay Price',
+            format: 'currency',
+            format: {
+                type: "fixedPoint",
+                precision: 2
+            },
+        },
+        {
+            dataField: 'amazonPrice',
+            caption: 'Amazon Price',
+            format: 'currency',
+            format: {
+                type: "fixedPoint",
+                precision: 2
+            },
+        },
+        {
+            dataField: 'sellPrice',
+            caption: 'Sell Price',
+            format: 'currency',
+            format: {
+                type: "fixedPoint",
+                precision: 2
+            },
+        },
+    ],  
+    onSelectionChanged(e) {
+      selectedRowIndex = e.component.getRowIndexByKey(e.selectedRowKeys[0]);
+
+      deleteSDA.option('visible', selectedRowIndex !== -1);
+      editSDA.option('visible', selectedRowIndex !== -1);
+    },
+  });
+
+  var accessibilityDefiniton = $('#accessibilityDefinition').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({                
+		key: 'personnelCode',
+		loadUrl: `${localUrl}/DefinitionAccessibilityList`,
+		insertUrl: `${localUrl}/AddDefinitionAccesibility`,
+		deleteUrl: `${localUrl}/DeleteDefinitionAccessibility`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };     
+			 if (ajaxOptions.data.key)  
+			ajaxOptions.url += "?key=" + ajaxOptions.data.key;            
+		},
+	}),     
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	editing: {
+	  allowAdding: true,
+	  allowDeleting: true,
+	},
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	columns: [    
+		{
+			dataField: 'personnelCode',
+			caption: 'Personnel Name',
+			dataType: 'string',
+			alignment: 'center',
+			lookup: {
+					  dataSource: personnelNameLookUp.responseJSON,
+					  displayExpr: 'personnelName',
+					  valueExpr: 'personnelCode',
+					},
+		},        
+		{
+			dataField: 'storeName',
+			caption: 'Store Name',
+			dataType: 'string',
+			alignment: 'center',
+			allowEditing:false,
+		},           
+		{
+			dataField: 'permission',
+			caption: 'Authority',
+			dataType: 'string',
+			alignment: 'center',
+			allowEditing:false,
+		},               
+		{
+			dataField: 'document',
+			caption: 'Document',
+			dataType: 'boolean',
+			alignment: 'center',
+		},              
+		{
+			dataField: 'personnel',
+			caption: 'Personnel',
+			dataType: 'boolean',
+			alignment: 'center',
+		},              
+		{
+			dataField: 'category',
+			caption: 'Category',
+			dataType: 'boolean',
+			alignment: 'center',
+		},              
+		{
+			dataField: 'store',
+			caption: 'Store',
+			dataType: 'boolean',
+			alignment: 'center',
+		},	             
+		{
+			dataField: 'product',
+			caption: 'Product',
+			dataType: 'boolean',
+			alignment: 'center',
+		},
+	], 
+  });
+
+//Setting Menu Sub Categories  
+  var settingPrice = $('#icon-setting-price').dxButton({
+  icon: 'fa fa-usd',
+  text: 'Price',
+  onClick() {
+      if (settingPermission.responseJSON[0].price) {
+          jQuery('.demo-container-setting-price').addClass('active');
+          jQuery('.demo-container-setting-weekly').removeClass('active');
+          jQuery('.demo-container-setting-promotion').removeClass('active');
+          jQuery('.demo-container-setting-discount').removeClass('active');
+          jQuery('.demo-container-setting-accessibility').removeClass('active');
+      }
+      else {
+          jQuery('.demo-container-setting-weekly').removeClass('active');
+          jQuery('.demo-container-setting-promotion').removeClass('active');
+          jQuery('.demo-container-setting-discount').removeClass('active');
+          jQuery('.demo-container-setting-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this setting');
+	  }
+  },
+});
+
+  var settingWeekly = $('#icon-setting-weekly').dxButton({
+  icon: 'fa fa-pie-chart',
+  text: 'Inventory Order',
+  onClick() {
+      if (settingPermission.responseJSON[0].inventoryOrder) {
+          jQuery('.demo-container-setting-price').removeClass('active');
+          jQuery('.demo-container-setting-weekly').addClass('active');
+          jQuery('.demo-container-setting-promotion').removeClass('active');
+          jQuery('.demo-container-setting-discount').removeClass('active');
+          jQuery('.demo-container-setting-accessibility').removeClass('active');
+      }
+      else {
+          jQuery('.demo-container-setting-price').removeClass('active');
+          jQuery('.demo-container-setting-promotion').removeClass('active');
+          jQuery('.demo-container-setting-discount').removeClass('active');
+          jQuery('.demo-container-setting-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this setting');
+
+	  }
+  },
+});
+
+  var settingPromotion = $('#icon-setting-promotion').dxButton({
+  icon: 'fa fa-gift',
+  text: 'Promotions',
+  onClick() {
+      if (settingPermission.responseJSON[0].promotions) {
+          jQuery('.demo-container-setting-price').removeClass('active');
+          jQuery('.demo-container-setting-weekly').removeClass('active');
+          jQuery('.demo-container-setting-promotion').addClass('active');
+          jQuery('.demo-container-setting-discount').removeClass('active');
+          jQuery('.demo-container-setting-accessibility').removeClass('active');
+      }
+      else {
+          jQuery('.demo-container-setting-price').removeClass('active');
+          jQuery('.demo-container-setting-weekly').removeClass('active');
+          jQuery('.demo-container-setting-discount').removeClass('active');
+          jQuery('.demo-container-setting-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this setting');
+	  }
+  },
+});
+
+  var settingDiscount = $('#icon-setting-discount').dxButton({
+  icon: 'fa fa-level-down',
+  text: 'Discount',
+  onClick() {
+      if (settingPermission.responseJSON[0].discount) {
+          jQuery('.demo-container-setting-price').removeClass('active');
+          jQuery('.demo-container-setting-weekly').removeClass('active');
+          jQuery('.demo-container-setting-promotion').removeClass('active');
+          jQuery('.demo-container-setting-discount').addClass('active');
+          jQuery('.demo-container-setting-accessibility').removeClass('active');
+      }
+      else {
+          jQuery('.demo-container-setting-price').removeClass('active');
+          jQuery('.demo-container-setting-weekly').removeClass('active');
+          jQuery('.demo-container-setting-promotion').removeClass('active');
+          jQuery('.demo-container-setting-accessibility').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this setting');
+	  }
+  },
+});
+   
+  var settingAccessibility = $('#icon-setting-accessibility').dxButton({
+  icon: 'fa fa-universal-access',
+  text: 'Accessibility',
+  onClick() {
+	  
+      if ( cashierIdValue == 'IS765' || cashierIdValue == 'MN94') {
+		   jQuery('.demo-container-setting-price').removeClass('active');
+		   jQuery('.demo-container-setting-weekly').removeClass('active');
+		   jQuery('.demo-container-setting-promotion').removeClass('active');
+		   jQuery('.demo-container-setting-discount').removeClass('active');
+		   jQuery('.demo-container-setting-accessibility').addClass('active');
+      }
+      else {		  
+		   jQuery('.demo-container-setting-price').removeClass('active');
+		   jQuery('.demo-container-setting-weekly').removeClass('active');
+		   jQuery('.demo-container-setting-promotion').removeClass('active');
+		   jQuery('.demo-container-setting-discount').removeClass('active');
+		   DevExpress.ui.notify('You do not have permission to see this accessibility');
+	  }
+  },
+});
+
+//Setting Menu Sub Categories - DataGrids
+  var priceSetting = $('#priceSetting').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({                
+		key: 'id',
+		loadUrl: `${localUrl}/SettingPriceList`,
+		insertUrl: `${localUrl}/AddPriceRate`,
+		//deleteUrl: `${localUrl}/DeletePriceRate`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };     
+			 if (ajaxOptions.data.key)  
+			ajaxOptions.url += "?key=" + ajaxOptions.data.key;             
+		},
+	}),     
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	editing: {
+	  allowAdding: true,
+	  //allowDeleting: true,
+	},
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	columns: [
+		{
+			dataField: 'category',
+			caption: 'Category',
+			dataType: 'string',
+			alignment: 'center',
+			lookup: {
+					  dataSource: categoryLookup.responseJSON,
+					  displayExpr: 'description',
+					  valueExpr: 'id',
+					},
+		}, 
+		{
+			dataField: 'sellPrice',
+			caption: 'Sell Price(%)',
+			dataType: 'numeric',
+			alignment: 'center',
+		}, 
+		{
+			dataField: 'ebayPrice',
+			caption: 'Ebay Price(%)',
+			dataType: 'numeric',
+			alignment: 'center',
+		}, 
+		{
+			dataField: 'amazonPrice',
+			caption: 'Amazon Price(%)',
+			dataType: 'numeric',
+			alignment: 'center',
+		}, 
+		{
+			dataField: 'createDate',
+			caption: 'Create Date',
+			dataType: 'datetime',
+			alignment: 'center',
+			allowEditing: false,
+		}, 
+		{
+			dataField: 'updateDate',
+			caption: 'Update Date',
+			dataType: 'datetime',
+			alignment: 'center',
+			allowEditing: false,
+		}, 
+	], 
+  });
+
+  var weeklyInventoryOrderSetting = $('#weeklyInventoryOrder').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({                
+		key: ['id','storeName'],
+		loadUrl: `${localUrl}/SettingWeeklyInventoryList`,
+		updateUrl: `${localUrl}/SettingsWeeklyReport`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };     
+			 if (ajaxOptions.data.key)  
+			ajaxOptions.url += "?key=" + ajaxOptions.data.key;  
+		},
+	}),    
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	filterRow: {
+	  visible: true,
+	  applyFilter: 'auto',
+	},
+	searchPanel: {
+	  visible: true,
+	  width: 240,
+	  placeholder: 'Search...',
+	},
+	headerFilter: {
+	  visible: true,
+	},
+	editing: {
+	  mode: 'cell',
+	  allowUpdating: true,
+	},
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+      columns: [
+          {
+              dataField: 'storeName',
+              caption: 'Store',
+              dataType: 'string',
+              alignment: 'center',
+              allowEditing: false,
+              sortOrder: 'asc',
+          },
+          {
+              dataField: 'id',
+              caption: 'Id',
+              dataType: 'numeric',
+              alignment: 'center',
+              allowEditing: false,
+          },
+          {
+              dataField: 'productGroup',
+              caption: 'Group',
+              dataType: 'string',
+              alignment: 'center',
+              allowEditing: false,
+          },
+          {
+              dataField: 'category',
+              caption: 'Category',
+              dataType: 'string',
+              alignment: 'center',
+              allowEditing: false,
+          },
+          {
+              dataField: 'itemName',
+              caption: 'Name',
+              dataType: 'string',
+              alignment: 'center',
+              allowEditing: false,
+          },
+          {
+              dataField: 'isSelected',
+              caption: 'Selected',
+              dataType: 'boolean',
+              alignment: 'center',
+              allowEditing: true,
+		  }, 
+		  {
+		  	dataField: 'itemOrder',
+		  	caption: 'Order',
+		  	dataType: 'numeric',
+		  	alignment: 'center',
+		  	allowEditing: true,
+		  }, 
+	], 
+  });  
+  
+  var createPromotionSetting = $('#createPromotion').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({                
+		key: 'id',
+		loadUrl: `${localUrl}/SettingPromotionList`,
+		insertUrl: `${localUrl}/SettingsPromotionReport`,
+		deleteUrl: `${localUrl}/SettingsDeletePromotionReport`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };     
+			 if (ajaxOptions.data.key)  
+			ajaxOptions.url += "?key=" + ajaxOptions.data.key;             
+		},
+	}),     
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	editing: {
+	  allowAdding: true,
+	  allowDeleting: true,
+	},
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	columns: [
+		{
+			dataField: 'promotionName',
+			caption: 'Promotion Name',
+			dataType: 'string',
+			alignment: 'center',
+		}, 
+		{
+			dataField: 'startDate',
+			caption: 'Start Date',
+			dataType: 'date',
+			alignment: 'center',
+		}, 
+		{
+			dataField: 'endDate',
+			caption: 'End Date',
+			dataType: 'date',
+			alignment: 'center',
+		}, 
+	], 
+  });
+  
+  var discountUpdateSetting = $('#discountUpdate').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({                
+		key: 'id',
+		loadUrl: `${localUrl}/SettingDiscountList`,
+		updateUrl: `${localUrl}/SettingsProductDiscount`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };     
+			 if (ajaxOptions.data.key)  
+			ajaxOptions.url += "?key=" + ajaxOptions.data.key;             
+		},
+	}),     
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    },
+	editing: {
+	  mode: 'cell',
+	  allowUpdating: true,
+	},
+    headerFilter: {
+      visible: true,
+    },
+    filterRow: {
+      visible: true,
+      applyFilter: 'auto',
+    },
+    searchPanel: {
+      visible: true,
+      highlightCaseSensitive: true,
+    },
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	columns: [
+		{
+			dataField: 'id',
+			caption: 'Product Id',
+			dataType: 'numeric',
+			alignment: 'center',
+		}, 
+		{
+			dataField: 'itemName',
+			caption: 'Product Name',
+			dataType: 'string',
+			alignment: 'center',
+		}, 
+		{
+			dataField: 'discountRate',
+			caption: 'Discount(%)',
+			dataType: 'numeric',
+			alignment: 'center',
+		}, 
+	], 
+  });
+
+  var accessibilitySetting = $('#accessibilitySetting').dxDataGrid({
+	dataSource: new DevExpress.data.AspNet.createStore({                
+		key: 'personnelCode',
+		loadUrl: `${localUrl}/SettingAccessibilityList`,
+		insertUrl: `${localUrl}/AddSettingAccesibility`,
+		deleteUrl: `${localUrl}/DeleteSettingAccessibility`,
+		onBeforeSend(method, ajaxOptions) {
+			ajaxOptions.xhrFields = { withCredentials: true };     
+			 if (ajaxOptions.data.key)  
+			ajaxOptions.url += "?key=" + ajaxOptions.data.key;            
+		},
+	}),      
+    paging: {
+      pageSize: 18,
+    },
+    pager: {
+      showPageSizeSelector: true,
+      allowedPageSizes: [10, 18],
+    }, 
+	editing: {
+	  allowAdding: true,
+	  allowDeleting: true,
+	},
+	repaintChangesOnly: true,
+	showBorders: true,
+	showColumnLines: true,
+	showRowLines: true,
+	columns: [    
+		{
+			dataField: 'personnelCode',
+			caption: 'Personnel Name',
+			dataType: 'string',
+			alignment: 'center',
+			lookup: {
+					  dataSource: personnelNameLookUp.responseJSON,
+					  displayExpr: 'personnelName',
+					  valueExpr: 'personnelCode',
+					},
+		},        
+		{
+			dataField: 'storeName',
+			caption: 'Store Name',
+			dataType: 'string',
+			alignment: 'center',
+			allowEditing:false,
+		},           
+		{
+			dataField: 'permission',
+			caption: 'Authority',
+			dataType: 'string',
+			alignment: 'center',
+			allowEditing:false,
+		},               
+		{
+			dataField: 'price',
+			caption: 'Update Price',
+			dataType: 'boolean',
+			alignment: 'center',
+		},              
+		{
+			dataField: 'inventoryOrder',
+			caption: 'Inventory Order',
+			dataType: 'boolean',
+			alignment: 'center',
+		},              
+		{
+			dataField: 'promotions',
+			caption: 'Promotions',
+			dataType: 'boolean',
+			alignment: 'center',
+		}, 	 
+	], 
+  });
+
+//Boxes
+
+
+  var cashierId = $('#cashierId').dxTextBox({
+      mode: 'password',
+      placeholder: 'Please enter your cashier id',      
+  });
+   var addProductId = $('#addProductId').dxNumberBox({
+  });
+    var addProductName = $('#addProductName').dxTextBox({
+  });
+   var addDepartment = $('#addDepartment').dxSelectBox({
+    dataSource: departmentDataSource.responseJSON,
+    displayExpr: 'description',
+    valueExpr: 'id',
+    searchEnabled: true,
+  });
+    var addCategory = $('#addCategory').dxSelectBox({    
+    dataSource: categoryDataSource.responseJSON,
+    displayExpr: 'description',
+    valueExpr: 'id',
+    //searchEnabled: true,
+     onValueChanged(data) {       
+    },
+  });
+   var addSellPrice = $('#addSellPrice').dxNumberBox({
+    value: 0,   
+    showClearButton: true,
+    onValueChanged(data) {
+    },
+  });  
+   var addStock = $('#addStock').dxNumberBox({
+    value: 0,   
+    showClearButton: true,
+    onValueChanged(data) {
+    },
+  });
+ 
+  
+//Timer
+setInterval(()=> {  
+	   storeReport.dxDataGrid("instance").refresh();  
+}, 60000);  
+
+setInterval(()=> {  
+	   personnelReport.dxDataGrid("instance").refresh();  
+}, 60000);  
+
+setInterval(()=> {  
+	   invoiceReport.dxDataGrid("instance").refresh();  
+}, 60000);  
+
+setInterval(()=> {  
+	   customerReport.dxDataGrid("instance").refresh();  
+}, 60000);  
+setInterval(()=> {  
+	   stockReport.dxDataGrid("instance").refresh();  
+}, 60000);  
+
+setInterval(()=> {  
+	   productReport.dxDataGrid("instance").refresh();  
+}, 60000);  
+
+setInterval(()=> {  
+	   weeklyOrderReport.dxDataGrid("instance").refresh();  
+}, 60000);  
+
+setInterval(()=> {  
+	   undercountReport.dxDataGrid("instance").refresh();  
+}, 60000); 
+setInterval(()=> {  
+	   productRequestReport.dxDataGrid("instance").refresh();  
+}, 60000);  
+
+setInterval(()=> {  
+	   accessibilityReport.dxDataGrid("instance").refresh();  
+}, 300000);  
+
+setInterval(()=> {  
+	   documentDefinition.dxDataGrid("instance").refresh();  
+}, 300000);  
+
+setInterval(()=> {  
+	   categoryDefinition.dxDataGrid("instance").refresh();  
+}, 300000); 
+setInterval(()=> {  
+	   personnelDefinition.dxDataGrid("instance").refresh();  
+}, 300000);  
+
+setInterval(()=> {  
+	   storeDefinition.dxDataGrid("instance").refresh();  
+}, 300000);  
+
+setInterval(()=> {  
+	   productDefinition.dxDataGrid("instance").refresh();  
+}, 900000);  
+
+setInterval(()=> {  
+	   definitionAccessibility.dxDataGrid("instance").refresh();  
+}, 300000);  
+
+setInterval(()=> {  
+	   priceSetting.dxDataGrid("instance").refresh();  
+}, 300000); 
+
+setInterval(()=> {  
+	   weeklyInventoryOrderSetting.dxDataGrid("instance").refresh();  
+}, 300000); 
+
+setInterval(()=> {  
+	   createPromotionSetting.dxDataGrid("instance").refresh();  
+}, 300000); 
+
+setInterval(()=> {  
+	   accessibilitySetting.dxDataGrid("instance").refresh();  
+}, 300000); 
+//Button
+
+  var reportPageButton = $('#icon-admin-back').dxButton({
+	icon: 'arrowleft',
+	onClick() {
+		
+		  var RedirectUrl= "yourUrl";
+		location.href = `${RedirectUrl}`;
+
+	},
+  });
+
+  var updateProductReportButton =   $('#updateProductReport').dxButton({
+    stylingMode: 'contained',
+    text: 'Update All Product',
+    type: 'default',
+    onClick() {
+			$.ajax
+                ({
+                    type: "POST",
+                    url: `${localUrl}/UpdateProductReport`,
+                    success: function(resultData) {
+                        weeklyOrderReport.dxDataGrid("instance").refresh();
+                        DevExpress.ui.notify('Process Completed');
+                    }
+                });
+    },
+  });
+
+  var invoiceOutputEditor = $('#invoiceOutput').dxHtmlEditor({
+    height: 725,
+    //value: markup,
+  })
+
+ </script>
+  </body>
+</html>
