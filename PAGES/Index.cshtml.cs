@@ -1354,18 +1354,19 @@ namespace Test_InventoryPage.Pages
         {
             //log table
 
-            TwilioClient.Init("AC2c5b50cdd058de5285f255a906991ed2", "e74dbc38dbf12287d264a2e1e122df2c");
+            TwilioClient.Init("AC********", "e7******");
             NpgsqlConnection connection = new NpgsqlConnection("Host=host;Username=username;Password=password;Database=database");
             connection.Open();
             var response = "fail";
             var gifted = "";
 
             //TOTP ID verification
-                    var challenge = ChallengeResource.Create(
-                   authPayload: authPayload,
-                   factorSid: "YF02633f48adfd491d563cb36f4acc0aa0",
-                   pathServiceSid: "VAae5efa633236d7c0597ae60f35c56ac9",
-                   pathIdentity: "ff483d1ff591898a9942916050d2ca3f"
+                      var challenge = ChallengeResource.Create(
+			    authPayload: "827429",
+			    factorSid: "YF0******",
+			   pathServiceSid: "VAa******",
+			   pathIdentity: "ff******"
+			);
                     );
                     if (response == "fail")
                     {
@@ -1377,7 +1378,7 @@ namespace Test_InventoryPage.Pages
                         using (var cmd = new NpgsqlCommand(@"select personnelcode  
                                                             from  personnel pp 
                                                             left join  lkp_verifycode plv on plv.id = pp.verifyid 
-                                                            where storeid = :storeId and plv.factorsid = 'YF02633f48adfd491d563cb36f4acc0aa0'", connection))
+                                                            where storeid = :storeId and plv.factorsid = 'YF0******'", connection))
                         {
                             cmd.Parameters.AddWithValue("storeId", storeId);
                             cmd.Prepare();
@@ -1399,195 +1400,8 @@ namespace Test_InventoryPage.Pages
 
                         }
                     };
-                    var secondchallenge = ChallengeResource.Create(
-                   authPayload: authPayload,
-                        factorSid: "YF02633cd7073f5945ede24b4366ffa87c",
-                        pathServiceSid: "VAae5efa633236d7c0597ae60f35c56ac9",
-                        pathIdentity: "ff483d1ff591898a9942916050d2ca3f"
-                    );
-                    if (response == "fail")
-                    {
-                        response = (secondchallenge.Status.ToString() == "pending" ? "fail" : "success");
-                    }
-                    else
-                    {
-
-                        using (var cmd = new NpgsqlCommand(@"select personnelcode  
-                                                            from  personnel pp 
-                                                            left join  lkp_verifycode plv on plv.id = pp.verifyid 
-                                                            where storeid = :storeId and plv.factorsid = 'YF02633cd7073f5945ede24b4366ffa87c'", connection))
-                        {
-                            cmd.Parameters.AddWithValue("storeId", storeId);
-                            cmd.Prepare();
-                            NpgsqlDataReader reader = cmd.ExecuteReader();
-
-
-                            if (reader.HasRows)
-                            {
-                                while (reader.Read())
-                                {
-                                    personnelCode = reader[0].ToString();
-                                };
-                            }
-                            else
-                            {
-                            }
-                            reader.Close();
-
-
-                        }
-                    };
-                    var thirdchallenge = ChallengeResource.Create(
-                        authPayload: authPayload,
-                        factorSid: "YF02634026215262c2da050d7c9e5471da",
-                        pathServiceSid: "VAae5efa633236d7c0597ae60f35c56ac9",
-                        pathIdentity: "ff483d1ff591898a9942916050d2ca3f"
-                    );
-                    if (response == "fail")
-                    {
-                        response = (thirdchallenge.Status.ToString() == "pending" ? "fail" : "success");
-                    }
-                    else
-                    {
-
-                        using (var cmd = new NpgsqlCommand(@"select personnelcode  
-                                                            from  personnel pp 
-                                                            left join  lkp_verifycode plv on plv.id = pp.verifyid 
-                                                            where storeid = :storeId and plv.factorsid = 'YF02634026215262c2da050d7c9e5471da'", connection))
-                        {
-                            cmd.Parameters.AddWithValue("storeId", storeId);
-                            cmd.Prepare();
-                            NpgsqlDataReader reader = cmd.ExecuteReader();
-
-
-                            if (reader.HasRows)
-                            {
-                                while (reader.Read())
-                                {
-                                    personnelCode = reader[0].ToString();
-                                };
-                            }
-                            else
-                            {
-                            }
-                            reader.Close();
-
-
-                        }
-                    };
-                    var fourthchallenge = ChallengeResource.Create(
-                        authPayload: authPayload,
-                        factorSid: "YF026340270b970dc8e834c4e3d127168f",
-                        pathServiceSid: "VAae5efa633236d7c0597ae60f35c56ac9",
-                        pathIdentity: "ff483d1ff591898a9942916050d2ca3f"
-                    );
-                    if (response == "fail")
-                    {
-                        response = (fourthchallenge.Status.ToString() == "pending" ? "fail" : "success");
-                    }
-                    else
-                    {
-
-                        using (var cmd = new NpgsqlCommand(@"select personnelcode  
-                                                            from  personnel pp 
-                                                            left join  lkp_verifycode plv on plv.id = pp.verifyid 
-                                                            where storeid = :storeId and plv.factorsid = 'YF026340270b970dc8e834c4e3d127168f'", connection))
-                        {
-                            cmd.Parameters.AddWithValue("storeId", storeId);
-                            cmd.Prepare();
-                            NpgsqlDataReader reader = cmd.ExecuteReader();
-
-
-                            if (reader.HasRows)
-                            {
-                                while (reader.Read())
-                                {
-                                    personnelCode = reader[0].ToString();
-                                };
-                            }
-                            else
-                            {
-                            }
-                            reader.Close();
-
-
-                        }
-                    };
-                    var fifthchallenge = ChallengeResource.Create(
-                        authPayload: authPayload,
-                        factorSid: "YF02634042148ed5621b01c63341229ee0",
-                        pathServiceSid: "VAae5efa633236d7c0597ae60f35c56ac9",
-                        pathIdentity: "ff483d1ff591898a9942916050d2ca3f"
-                    );
-                    if (response == "fail")
-                    {
-                        response = (fifthchallenge.Status.ToString() == "pending" ? "fail" : "success");
-                    }
-                    else
-                    {
-
-                        using (var cmd = new NpgsqlCommand(@"select personnelcode  
-                                                            from  personnel pp 
-                                                            left join  lkp_verifycode plv on plv.id = pp.verifyid 
-                                                            where storeid = :storeId and plv.factorsid = 'YF02634042148ed5621b01c63341229ee0'", connection))
-                        {
-                            cmd.Parameters.AddWithValue("storeId", storeId);
-                            cmd.Prepare();
-                            NpgsqlDataReader reader = cmd.ExecuteReader();
-
-
-                            if (reader.HasRows)
-                            {
-                                while (reader.Read())
-                                {
-                                    personnelCode = reader[0].ToString();
-                                };
-                            }
-                            else
-                            {
-                            }
-                            reader.Close();
-
-
-                        }
-                    };
-                    var sixthchallenge = ChallengeResource.Create(
-                        authPayload: authPayload,
-                        factorSid: "YF026340434079ce5d493973c90ecc86ee",
-                        pathServiceSid: "VAae5efa633236d7c0597ae60f35c56ac9",
-                        pathIdentity: "ff483d1ff591898a9942916050d2ca3f"
-                    );
-                    if (response == "fail")
-                    {
-                        response = (sixthchallenge.Status.ToString() == "pending" ? "fail" : "success");
-                    }
-                    else
-                    {
-
-                        using (var cmd = new NpgsqlCommand(@"select personnelcode  
-                                                            from  personnel pp 
-                                                            left join  lkp_verifycode plv on plv.id = pp.verifyid 
-                                                            where storeid = :storeId and plv.factorsid = 'YF026340434079ce5d493973c90ecc86ee'", connection))
-                        {
-                            cmd.Parameters.AddWithValue("storeId", storeId);
-                            cmd.Prepare();
-                            NpgsqlDataReader reader = cmd.ExecuteReader();
-
-
-                            if (reader.HasRows)
-                            {
-                                while (reader.Read())
-                                {
-                                    personnelCode = reader[0].ToString();
-                                };
-                            }
-                            else
-                            {
-                            }
-                            reader.Close();
-
-
-                        }
+                    
+                   
                     };
 
             if (response != "fail")
